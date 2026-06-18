@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mahmoud — BI Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy-deep:    #0D1B2A;
+      --navy-card:    #162235;
+      --navy-raised:  #1E2F45;
+      --navy-border:  #2A3F57;
+      --gold:         #C9A96E;
+      --gold-dim:     #8C6E3F;
+      --gold-pale:    #2A2010;
+      --beige:        #E8DCC8;
+      --beige-muted:  #A89880;
+      --beige-dim:    #6B5F50;
+      --white:        #F5F0E8;
+      --radius:       10px;
+      --radius-lg:    16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy-deep);
+      color: var(--beige);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,27,42,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--navy-border);
+      padding: 0 2.5rem;
+      height: 58px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--beige-muted);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--beige); }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 8rem 2.5rem 6rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px; height: 1px;
+      background: var(--gold);
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 4.2rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.08;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .hero-bio {
+      font-size: 1rem;
+      color: var(--beige-muted);
+      max-width: 480px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .monogram {
+      font-family: 'Playfair Display', serif;
+      font-size: 7rem;
+      font-weight: 700;
+      color: var(--navy-border);
+      line-height: 1;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .monogram span { color: var(--gold); }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 0.65rem 1.5rem;
+      border-radius: var(--radius);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s, opacity 0.15s;
+      letter-spacing: 0.02em;
+    }
+    .btn:hover { transform: translateY(-1px); opacity: 0.92; }
+    .btn-gold { background: var(--gold); color: var(--navy-deep); }
+    .btn-outline {
+      background: transparent;
+      color: var(--beige);
+      border: 1px solid var(--navy-border);
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── SECTIONS ── */
+    .section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 5.5rem 2.5rem;
+    }
+    .divider {
+      border: none;
+      border-top: 1px solid var(--navy-border);
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px; height: 1px;
+      background: var(--gold);
+    }
+    .section-title {
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 3rem;
+      line-height: 1.15;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--beige-muted);
+      margin-bottom: 1rem;
+      font-size: 0.975rem;
+    }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .stat-card {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1rem;
+    }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--beige-dim);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.25rem;
+    }
+    .project-card {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      display: flex; flex-direction: column;
+      transition: border-color 0.25s, transform 0.2s;
+    }
+    .project-card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-3px);
+    }
+    .project-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.75rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+      opacity: 0.7;
+    }
+    .project-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .project-card p {
+      font-size: 0.875rem;
+      color: var(--beige-muted);
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 1.5rem;
+    }
+    .project-tags {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-bottom: 1.5rem;
+    }
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 4px;
+      background: var(--navy-raised);
+      color: var(--beige-muted);
+      border: 1px solid var(--navy-border);
+      letter-spacing: 0.04em;
+    }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: gap 0.15s;
+    }
+    .project-link:hover { gap: 10px; }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .skill-group {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+    .skill-group-title {
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      margin-bottom: 0.9rem;
+    }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-pill {
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 5px;
+      background: var(--navy-raised);
+      border: 1px solid var(--navy-border);
+      color: var(--beige-muted);
+    }
+
+    /* ── CERTIFICATIONS ── */
+    .cert-list { display: flex; flex-direction: column; gap: 0.6rem; }
+    .cert-item {
+      display: flex; align-items: center; gap: 1rem;
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      transition: border-color 0.2s;
+    }
+    .cert-item:hover { border-color: var(--gold-dim); }
+    .cert-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .cert-dot.active { background: #4ADE80; }
+    .cert-dot.progress { background: var(--gold); }
+    .cert-info { flex: 1; }
+    .cert-name {
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: var(--beige);
+      margin-bottom: 2px;
+    }
+    .cert-issuer { font-size: 0.775rem; color: var(--beige-dim); }
+    .cert-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 4px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .cert-badge.active {
+      background: rgba(74,222,128,0.1);
+      color: #4ADE80;
+      border: 1px solid rgba(74,222,128,0.25);
+    }
+    .cert-badge.progress {
+      background: var(--gold-pale);
+      color: var(--gold);
+      border: 1px solid var(--gold-dim);
+    }
+
+    /* ── CONTACT ── */
+    .contact-box {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius-lg);
+      padding: 4rem 3.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-box::before {
+      content: '[ MM ]';
+      font-family: 'Playfair Display', serif;
+      font-size: 10rem;
+      font-weight: 700;
+      color: var(--navy-raised);
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      user-select: none;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .contact-box > * { position: relative; z-index: 1; }
+    .contact-box h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+    .contact-box p {
+      color: var(--beige-muted);
+      font-size: 0.975rem;
+      max-width: 440px;
+      margin: 0 auto 2.25rem;
+      line-height: 1.75;
+    }
+    .contact-links {
+      display: flex; justify-content: center;
+      flex-wrap: wrap; gap: 0.85rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.775rem;
+      color: var(--beige-dim);
+      border-top: 1px solid var(--navy-border);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .hero { grid-template-columns: 1fr; gap: 2rem; }
+      .monogram { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .contact-box { padding: 2.5rem 1.5rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="#" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;">
+      <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <rect width="32" height="32" rx="7" fill="#C9A96E"/>
+        <text x="16" y="22" text-anchor="middle" font-family="Playfair Display, serif" font-size="14" font-weight="700" fill="#0D1B2A">MM</text>
+      </svg>
+      <span>Mahmoud</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div>
+      <div class="hero-eyebrow">BI Engineer &amp; IT Analyst · Cairo, Egypt</div>
+      <h1>Turning data<br/>into <em>decisions.</em></h1>
+      <p class="hero-bio">
+        I build Power BI dashboards, data pipelines, and analytics systems
+        that give teams clarity. Currently at PwC ETIC Middle East,
+        transitioning fully into BI Engineering.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-gold">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          View my work
+        </a>
+        <a href="#contact" class="btn btn-outline">Get in touch</a>
+      </div>
+    </div>
+    <div class="monogram">[ <span>MM</span> ]</div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="section-eyebrow">About me</div>
+    <h2 class="section-title">A bit about myself</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm an IT Operations Analyst Associate at PwC ETIC (Middle East), with over 2.5 years
+          bridging IT operations and business intelligence. I hold a B.Sc. in Information Engineering
+          and Technology from the German University in Cairo, class of 2023.
+        </p>
+        <p>
+          I specialize in end-to-end BI solutions — data modeling in Power BI and DAX,
+          clean pipelines via Power Query and Alteryx, and Azure-backed deployments.
+          My work turns operational noise into dashboards stakeholders actually rely on.
+        </p>
+        <p>
+          Currently completing my ITIL 4 Foundation and DP-600 certifications as I step
+          fully into a BI Engineering role at a large corporate.
+        </p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-number">2.5+</div>
+          <div class="stat-label">Years of experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">8+</div>
+          <div class="stat-label">Certifications earned</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">PwC</div>
+          <div class="stat-label">ETIC Middle East</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">GUC</div>
+          <div class="stat-label">B.Sc. IET, 2023</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="section-eyebrow">Selected work</div>
+    <h2 class="section-title">Featured projects</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-num">01</div>
+        <h3>IT Hardware Monitoring System</h3>
+        <p>
+          A Power BI dashboard connected to SharePoint Online tracking hardware lifecycle,
+          asset allocation, and maintenance across the organization. Self-initiated at PwC ETIC.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">DAX</span>
+          <span class="tag">SharePoint</span>
+          <span class="tag">Power Query</span>
+        </div>
+        <!-- CUSTOMIZE: replace # with your GitHub repo URL -->
+        <a href="#" class="project-link" target="_blank" rel="noopener">
+          View on GitHub
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">02</div>
+        <h3>Service Desk Analytics Dashboard</h3>
+        <p>
+          End-to-end Power BI solution analyzing IT service desk tickets from SharePoint Online,
+          surfacing SLA compliance, ticket trends, and team performance KPIs.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">DAX</span>
+          <span class="tag">KPI Design</span>
+          <span class="tag">SharePoint</span>
+        </div>
+        <!-- CUSTOMIZE: replace # with your GitHub repo URL -->
+        <a href="#" class="project-link" target="_blank" rel="noopener">
+          View on GitHub
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">03</div>
+        <h3>Your next project</h3>
+        <p>
+          Duplicate this card block, update the number, title, description, tags,
+          and GitHub link to add another project to your portfolio.
+        </p>
+        <div class="project-tags">
+          <span class="tag">SQL</span>
+          <span class="tag">Python</span>
+          <span class="tag">Azure</span>
+        </div>
+        <a href="#" class="project-link" target="_blank" rel="noopener">
+          View on GitHub
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="section-eyebrow">Tech stack</div>
+    <h2 class="section-title">Skills &amp; tools</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">BI &amp; Visualization</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Power BI</span>
+          <span class="skill-pill">DAX</span>
+          <span class="skill-pill">Power Query</span>
+          <span class="skill-pill">M Language</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Data &amp; Cloud</div>
+        <div class="skill-pills">
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">Azure</span>
+          <span class="skill-pill">Fabric</span>
+          <span class="skill-pill">SharePoint</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Programming</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Alteryx</span>
+          <span class="skill-pill">Excel</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">IT &amp; Operations</div>
+        <div class="skill-pills">
+          <span class="skill-pill">ITIL 4</span>
+          <span class="skill-pill">Fortinet</span>
+          <span class="skill-pill">Service Desk</span>
+          <span class="skill-pill">Asset Mgmt</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- CERTIFICATIONS -->
+  <section class="section" id="certifications">
+    <div class="section-eyebrow">Credentials</div>
+    <h2 class="section-title">Certifications</h2>
+    <div class="cert-list">
+      <div class="cert-item">
+        <div class="cert-dot active"></div>
+        <div class="cert-info">
+          <div class="cert-name">Microsoft PL-300 — Power BI Data Analyst</div>
+          <div class="cert-issuer">Microsoft</div>
+        </div>
+        <span class="cert-badge active">Active</span>
+      </div>
+      <div class="cert-item">
+        <div class="cert-dot active"></div>
+        <div class="cert-info">
+          <div class="cert-name">Microsoft DP-900 — Azure Data Fundamentals</div>
+          <div class="cert-issuer">Microsoft</div>
+        </div>
+        <span class="cert-badge active">Active</span>
+      </div>
+      <div class="cert-item">
+        <div class="cert-dot active"></div>
+        <div class="cert-info">
+          <div class="cert-name">Microsoft AZ-900 — Azure Fundamentals</div>
+          <div class="cert-issuer">Microsoft</div>
+        </div>
+        <span class="cert-badge active">Active</span>
+      </div>
+      <div class="cert-item">
+        <div class="cert-dot active"></div>
+        <div class="cert-info">
+          <div class="cert-name">Alteryx Designer Core &amp; Advanced</div>
+          <div class="cert-issuer">Alteryx</div>
+        </div>
+        <span class="cert-badge active">Active</span>
+      </div>
+      <div class="cert-item">
+        <div class="cert-dot active"></div>
+        <div class="cert-info">
+          <div class="cert-name">Fortinet NSE 1, 2 &amp; 3</div>
+          <div class="cert-issuer">Fortinet</div>
+        </div>
+        <span class="cert-badge active">Active</span>
+      </div>
+      <div class="cert-item">
+        <div class="cert-dot progress"></div>
+        <div class="cert-info">
+          <div class="cert-name">Microsoft DP-600 — Fabric Analytics Engineer</div>
+          <div class="cert-issuer">Microsoft</div>
+        </div>
+        <span class="cert-badge progress">In progress</span>
+      </div>
+      <div class="cert-item">
+        <div class="cert-dot progress"></div>
+        <div class="cert-info">
+          <div class="cert-name">ITIL 4 Foundation</div>
+          <div class="cert-issuer">AXELOS / PeopleCert</div>
+        </div>
+        <span class="cert-badge progress">In progress</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="contact-box">
+      <h2 class="section-title" style="margin-bottom:0.75rem">Let's connect</h2>
+      <p>Open to BI Engineer and Data Analyst roles. Reach out on LinkedIn or explore my code on GitHub.</p>
+      <div class="contact-links">
+        <!-- CUSTOMIZE: replace YOUR-LINKEDIN-HANDLE and YOUR-GITHUB-USERNAME -->
+        <a href="https://linkedin.com/in/YOUR-LINKEDIN-HANDLE" class="btn btn-gold" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/YOUR-GITHUB-USERNAME" class="btn btn-outline" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          GitHub
+        </a>
+        <!-- CUSTOMIZE: replace YOUR-EMAIL@example.com -->
+        <a href="mailto:YOUR-EMAIL@example.com" class="btn btn-outline">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email me
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Mahmoud · Built with HTML, CSS &amp; GitHub Pages</p>
+  </footer>
+
+</body>
+</html>
