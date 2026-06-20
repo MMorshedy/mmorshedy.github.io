@@ -288,37 +288,89 @@
     }
     .project-link:hover { gap: 10px; }
 
-    /* ── SKILLS ── */
+    /* ── SKILLS: PER-CATEGORY DONUT CHARTS ── */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
     }
-    .skill-group {
+    .skill-chart-card {
       background: var(--navy-card);
       border: 1px solid var(--navy-border);
-      border-radius: var(--radius);
-      padding: 1.25rem;
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: border-color 0.2s, transform 0.2s;
     }
-    .skill-group-title {
-      font-size: 0.68rem;
+    .skill-chart-card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-2px);
+    }
+    .skill-chart-title {
+      font-size: 0.7rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       color: var(--gold);
-      margin-bottom: 0.9rem;
+      margin-bottom: 1.25rem;
+      text-align: center;
     }
-    .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
-    .skill-pill {
-      font-size: 0.78rem;
+    .skill-donut-wrap {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      margin-bottom: 1.5rem;
+    }
+    .skill-donut-wrap svg { transform: rotate(-90deg); }
+    .skill-donut-center {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    .skill-donut-center .avg {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+    }
+    .skill-donut-center .avg-label {
+      font-size: 0.6rem;
+      color: var(--beige-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 3px;
+    }
+    .skill-legend {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .skill-legend-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .skill-legend-dot {
+      width: 9px; height: 9px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+    .skill-legend-name {
+      font-size: 0.8rem;
+      color: var(--beige);
       font-weight: 500;
-      padding: 4px 10px;
-      border-radius: 5px;
-      background: var(--navy-raised);
-      border: 1px solid var(--navy-border);
-      color: var(--beige-muted);
     }
-
+    .skill-legend-val {
+      margin-left: auto;
+      font-size: 0.75rem;
+      color: var(--beige-dim);
+      font-weight: 600;
+    }
     /* ── CERTIFICATIONS ── */
     .cert-list { display: flex; flex-direction: column; gap: 0.6rem; }
     .cert-item {
