@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mahmoud Morshedy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy-deep: #0A1622;
+      --navy-panel: #101F30;
+      --navy-raised: #16293D;
+      --navy-border: #243B52;
+      --grid-line: #1A2C40;
+      --gold: #C9A96E;
+      --gold-dim: #8C6E3F;
+      --beige: #E8DCC8;
+      --beige-muted: #94A3B5;
+      --beige-dim: #5C6E80;
+      --white: #F3F0E9;
+      --green: #4ADE80;
+      --blue: #5B9BD5;
+      --radius: 8px;
+      --radius-lg: 12px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy-deep);
+      color: var(--beige);
+      line-height: 1.6;
+      font-size: 15px;
+      min-height: 100vh;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: -0.01em;
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ===== TOP BAR ===== */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(10, 22, 34, 0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--navy-border);
+      padding: 0 1.75rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .brand-badge {
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--navy-deep);
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .brand-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .brand-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .live-tag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--green);
+      letter-spacing: 0.05em;
+    }
+
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.15);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.4;
+      }
+    }
+
+    /* ===== TAB BAR ===== */
+    .tabbar {
+      position: sticky;
+      top: 56px;
+      z-index: 190;
+      background: rgba(13, 27, 42, 0.97);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--navy-border);
+      padding: 0 1.75rem;
+      display: flex;
+      gap: 0.25rem;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: none;
+      border: none;
+      padding: 0.85rem 1.1rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--beige-dim);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: var(--beige);
+    }
+
+    .tab-btn.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    .tab-btn .tnum {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--beige-dim);
+      background: var(--navy-raised);
+      border: 1px solid var(--navy-border);
+      border-radius: 3px;
+      padding: 1px 5px;
+    }
+
+    .tab-btn.active .tnum {
+      color: var(--gold);
+      border-color: var(--gold-dim);
+    }
+
+    /* ===== KPI HEADER ROW ===== */
+    .kpi-row {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 1.5rem 1.75rem 0.5rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .kpi-card {
+      position: relative;
+      background: var(--navy-panel);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+    }
+
+    .kpi-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.66rem;
+      color: var(--beige-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .kpi-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .kpi-value .unit {
+      font-size: 1rem;
+      color: var(--gold);
+      margin-left: 2px;
+    }
+
+    .kpi-trend {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--green);
+      margin-top: 0.4rem;
+    }
+
+    /* ===== PANEL SYSTEM ===== */
+    .dash-view {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 1.5rem 1.75rem 4rem;
+      display: none;
+    }
+
+    .dash-view.active {
+      display: block;
+    }
+
+    .panel {
+      position: relative;
+      background: var(--navy-panel);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius-lg);
+      margin-bottom: 1.25rem;
+      overflow: hidden;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.25rem;
+      border-bottom: 1px solid var(--navy-border);
+      background: var(--navy-raised);
+    }
+
+    .panel-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .panel-title::before {
+      content: '';
+      width: 3px;
+      height: 14px;
+      background: var(--gold);
+      border-radius: 1px;
+    }
+
+    .panel-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.66rem;
+      color: var(--beige-dim);
+    }
+
+    .panel-body {
+      padding: 1.5rem;
+    }
+
+    /* ===== OVERVIEW TAB ===== */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .about-copy p {
+      color: var(--beige-muted);
+      margin-bottom: 0.9rem;
+      font-size: 0.9rem;
+    }
+
+    .about-copy p:last-child {
+      margin-bottom: 0;
+    }
+
+    .field-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--navy-border);
+      font-size: 0.82rem;
+    }
+
+    .field-row:last-child {
+      border-bottom: none;
+    }
+
+    .field-key {
+      color: var(--beige-dim);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .field-val {
+      color: var(--beige);
+      font-weight: 500;
+      text-align: right;
+    }
+
+    /* ===== PROJECTS TAB ===== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--navy-raised);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-2px);
+    }
+
+    .proj-id {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .project-card h3 {
+      font-size: 0.98rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .project-card p {
+      font-size: 0.82rem;
+      color: var(--beige-muted);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 1.1rem;
+    }
+
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 1.1rem;
+    }
+
+    .proj-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      padding: 2px 7px;
+      border-radius: 3px;
+      background: var(--navy-panel);
+      border: 1px solid var(--navy-border);
+      color: var(--beige-muted);
+    }
+
+    .proj-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--gold);
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    /* ===== PROJECT DETAIL (inline case study) ===== */
+    .project-card {
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+    }
+
+    .projects-list-wrap.hidden {
+      display: none;
+    }
+
+    .case-study.hidden {
+      display: none;
+    }
+
+    .case-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--beige-muted);
+      margin-bottom: 1.25rem;
+      padding: 0;
+      transition: color 0.15s;
+    }
+
+    .case-back:hover {
+      color: var(--gold);
+    }
+
+    .case-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .case-id {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    .case-header h2 {
+      font-size: 1.4rem;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+
+    .case-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .case-desc {
+      font-size: 0.88rem;
+      color: var(--beige-muted);
+      line-height: 1.75;
+      max-width: 680px;
+    }
+
+    .case-section {
+      margin-top: 1.75rem;
+    }
+
+    .case-section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--beige-dim);
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .case-section-label::before {
+      content: '';
+      width: 14px;
+      height: 1px;
+      background: var(--gold-dim);
+    }
+
+    .pdf-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .pdf-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      background: var(--navy-raised);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius);
+      padding: 1.1rem;
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .pdf-card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-2px);
+    }
+
+    .pdf-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      flex-shrink: 0;
+      background: var(--navy-panel);
+      border: 1px solid var(--navy-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+    }
+
+    .pdf-title {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+
+    .pdf-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--beige-dim);
+    }
+
+    .media-frame {
+      background: var(--navy-raised);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .media-frame img,
+    .media-frame video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .media-placeholder {
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      color: var(--beige-dim);
+      font-size: 0.82rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .media-placeholder svg {
+      width: 32px;
+      height: 32px;
+      opacity: 0.4;
+    }
+
+    .media-caption {
+      padding: 0.75rem 1.1rem;
+      border-top: 1px solid var(--navy-border);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--beige-dim);
+    }
+
+    /* ===== SKILLS TAB ===== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .skill-card {
+      background: var(--navy-raised);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .skill-card-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      margin-bottom: 1.1rem;
+    }
+
+    .skill-donut {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      margin-bottom: 1.25rem;
+    }
+
+    .skill-donut svg {
+      transform: rotate(-90deg);
+    }
+
+    .skill-donut-c {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .skill-donut-c .v {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .skill-donut-c .l {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.56rem;
+      color: var(--beige-dim);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .sk-legend {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .sk-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.76rem;
+    }
+
+    .sk-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .sk-name {
+      color: var(--beige);
+    }
+
+    .sk-val {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--beige-dim);
+      font-size: 0.72rem;
+    }
+
+    /* ===== CERTS TAB ===== */
+    .cert-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .cert-table th {
+      text-align: left;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--beige-dim);
+      padding: 0.6rem 0.75rem;
+      border-bottom: 1px solid var(--navy-border);
+    }
+
+    .cert-table td {
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--grid-line);
+      font-size: 0.84rem;
+    }
+
+    .cert-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .cert-table tr:hover td {
+      background: rgba(201, 169, 110, 0.04);
+    }
+
+    .status-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      padding: 3px 9px;
+      border-radius: 3px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .status-pill.active {
+      background: rgba(74, 222, 128, 0.1);
+      color: var(--green);
+      border: 1px solid rgba(74, 222, 128, 0.25);
+    }
+
+    .status-pill.progress {
+      background: rgba(201, 169, 110, 0.1);
+      color: var(--gold);
+      border: 1px solid var(--gold-dim);
+    }
+
+    .cert-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 8px;
+    }
+
+    .cert-dot.a {
+      background: var(--green);
+    }
+
+    .cert-dot.p {
+      background: var(--gold);
+    }
+
+    /* ===== CONTACT TAB ===== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      background: var(--navy-raised);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius);
+      padding: 1.1rem;
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .contact-card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-2px);
+    }
+
+    .contact-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: var(--navy-panel);
+      border: 1px solid var(--navy-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold);
+    }
+
+    .contact-name {
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--white);
+      margin-bottom: 1px;
+    }
+
+    .contact-detail {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--beige-dim);
+    }
+
+    /* ===== FOOTER ===== */
+    .dash-footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--beige-dim);
+      border-top: 1px solid var(--navy-border);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width:900px) {
+      .kpi-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .overview-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width:600px) {
+      .kpi-row {
+        grid-template-columns: 1fr;
+        padding: 1rem 1rem 0.25rem;
+      }
+
+      .dash-view {
+        padding: 1rem 1rem 3rem;
+      }
+
+      .topbar,
+      .tabbar {
+        padding: 0 1rem;
+      }
+
+      .panel-body {
+        padding: 1.1rem;
+      }
+
+      .brand-sub {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <a class="brand" href="#">
+      <div class="brand-badge">MM</div>
+      <div class="brand-text">
+        <span class="brand-name">Mahmoud Morshedy</span>
+        <span class="brand-sub">Career Dashboard</span>
+      </div>
+    </a>
+    <div class="live-tag">
+      <span class="live-dot"></span>
+      <span>LIVE · UPDATED JUN 2026</span>
+    </div>
+  </div>
+
+  <div class="tabbar">
+    <button class="tab-btn active" data-tab="overview"><span class="tnum">01</span> Overview</button>
+    <button class="tab-btn" data-tab="projects"><span class="tnum">02</span> Projects</button>
+    <button class="tab-btn" data-tab="skills"><span class="tnum">03</span> Skills</button>
+    <button class="tab-btn" data-tab="certs"><span class="tnum">04</span> Certifications</button>
+    <button class="tab-btn" data-tab="contact"><span class="tnum">05</span> Contact</button>
+  </div>
+
+  <!-- KPI HEADER ROW — always visible, like a dashboard summary strip -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-label"><span>Experience</span><span class="mono">YRS</span></div>
+      <div class="kpi-value">3<span class="unit">yr</span></div>
+      <div class="kpi-trend">↑ Active at PwC ETIC</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label"><span>Certifications</span><span class="mono">QTY</span></div>
+      <div class="kpi-value">8<span class="unit">+</span></div>
+      <div class="kpi-trend">↑ 2 in progress</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label"><span>Projects shipped</span><span class="mono">QTY</span></div>
+      <div class="kpi-value">2<span class="unit">+</span></div>
+      <div class="kpi-trend">↑ Self-initiated</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label"><span>Skills tracked</span><span class="mono">QTY</span></div>
+      <div class="kpi-value">15</div>
+      <div class="kpi-trend">↑ Across 4 domains</div>
+    </div>
+  </div>
+
+  <!-- ===================== OVERVIEW TAB ===================== -->
+  <div class="dash-view active" id="view-overview">
+    <div class="overview-grid">
+
+      <div class="panel">
+        <div class="panel-head">
+          <div class="panel-title">Profile summary</div>
+          <div class="panel-meta">PANEL/01</div>
+        </div>
+        <div class="panel-body about-copy">
+          <p>
+            I'm an IT Operations Analyst Associate at PwC ETIC (Middle East) with over 3 years of experience
+            bridging IT operations and business intelligence, transforming complex operational data into executive-ready
+            insights.
+            I hold a B.Sc. in Information Engineering and Technology from the German University in Cairo (Class of
+            2023).
+          </p>
+          <p>
+            My background combines IT operations and data analytics, giving me a unique understanding of how data is
+            generated,
+            managed, and utilized across organizations before reaching reporting layers.
+          </p>
+          <p>
+            I specialize in transforming fragmented data into scalable BI solutions, from data modelling to interactive
+            dashboards.
+            Across operational domains, I deliver insights that drive decision-making while owning the full BI lifecycle
+            from requirements gathering and DAX development to performance optimization and stakeholder adoption.
+          </p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div class="panel-title">Record detail</div>
+          <div class="panel-meta">PANEL/02</div>
+        </div>
+        <div class="panel-body">
+          <div class="field-row"><span class="field-key">Role</span><span class="field-val">BI Engineer - IT Ops
+              Analyst</span></div>
+          <div class="field-row"><span class="field-key">Employer</span><span class="field-val">PwC ETIC
+            </span></div>
+          <div class="field-row"><span class="field-key">Location</span><span class="field-val">Cairo, Egypt</span>
+          </div>
+          <div class="field-row"><span class="field-key">Education</span><span class="field-val">B.Sc. IET — GUC,
+              2023</span></div>
+          <div class="field-row"><span class="field-key">Focus tools</span><span class="field-val">Power BI · DAX ·
+              SQL</span></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+    <!-- ===================== PROJECTS TAB ===================== -->
+    <div class="dash-view" id="view-projects">
+
+      <!-- PROJECT GRID (list view) -->
+      <div class="panel projects-list-wrap" id="projects-list">
+        <div class="panel-head">
+          <div class="panel-title">Featured projects</div>
+          <div class="panel-meta">PANEL/03 · 2 RECORDS</div>
+        </div>
+        <div class="panel-body">
+          <div class="projects-grid">
+
+            <button class="project-card" onclick="showCase('case-hardware')">
+              <div class="proj-id">PROJ-01</div>
+              <h3>Assets Monitoring System</h3>
+              <p>A Power BI dashboard connected to SharePoint Online tracking hardware lifecycle, asset allocation, and
+                maintenance across the organization. Self-initiated at PwC ETIC.</p>
+              <div class="proj-tags">
+                <span class="proj-tag">POWER BI</span>
+                <span class="proj-tag">DAX</span>
+                <span class="proj-tag">SHAREPOINT</span>
+                <span class="proj-tag">POWER QUERY</span>
+              </div>
+              <span class="proj-link">View Project →</span>
+            </button>
+
+            <button class="project-card" onclick="showCase('case-servicedesk')">
+              <div class="proj-id">PROJ-02</div>
+              <h3>Service Desk Analytics</h3>
+              <p>End-to-end Power BI solution analyzing IT service desk tickets from Atlassian JIRA, surfacing SLA
+                compliance, ticket trends, and team performance KPIs.</p>
+              <div class="proj-tags">
+                <span class="proj-tag">POWER BI</span>
+                <span class="proj-tag">DAX</span>
+                <span class="proj-tag">KPI DESIGN</span>
+                <span class="proj-tag">JIRA</span>
+              </div>
+              <span class="proj-link">View Project →</span>
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE STUDY: PROJ-01 -->
+      <div class="panel case-study hidden" id="case-hardware">
+        <div class="panel-head">
+          <div class="panel-title">Case study</div>
+          <div class="panel-meta">PROJ-01</div>
+        </div>
+        <div class="panel-body">
+          <button class="case-back" onclick="showList()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M19 12H5M12 5l-7 7 7 7" />
+            </svg>
+            Back to all projects
+          </button>
+
+          <div class="case-header">
+            <div class="case-id">PROJ-01</div>
+            <h2>Assets Monitoring System</h2>
+            <div class="case-tags">
+              <span class="proj-tag">POWER BI</span>
+              <span class="proj-tag">DAX</span>
+              <span class="proj-tag">SHAREPOINT</span>
+              <span class="proj-tag">POWER QUERY</span>
+            </div>
+            <p class="case-desc">
+              A self-initiated Power BI dashboard connected to SharePoint Online, tracking hardware
+              lifecycle, asset allocation, and maintenance across the organization at PwC ETIC.
+              Built to give IT operations a single source of truth for all hardware assets.
+            </p>
+          </div>
+
+          <div class="case-section">
+            <div class="case-section-label">Documentation</div>
+            <div class="pdf-grid">
+              <!-- CUSTOMIZE: set href to your PDF path, e.g. files/hardware-doc-1.pdf -->
+              <a href="AMS Dashboard.pdf" class="pdf-card" target="_blank" rel="noopener">
+                <div class="pdf-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.75">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                  </svg></div>
+                <div>
+                  <div class="pdf-title">Project Description</div>
+                  <div class="pdf-sub">Technical write-up · PDF</div>
+                </div>
+              </a>
+              <!-- CUSTOMIZE: second PDF -->
+              <a href="AMS Dashboard.pdf" class="pdf-card" target="_blank" rel="noopener">
+                <div class="pdf-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.75">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                  </svg></div>
+                <div>
+                  <div class="pdf-title">Dashboard Design Report</div>
+                  <div class="pdf-sub">Presentation deck · PDF</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="case-section">
+            <div class="case-section-label">SCREENSHOT</div>
+            <div class="media-frame">
+              <!-- CUSTOMIZE: once ready, replace this div with: <img src="files/hardware-screenshot.png" alt="Dashboard screenshot" /> -->
+              <img src="Model.png" alt="Dashboard screenshot" />
+              <div class="media-caption">Model — Assets Monitoring System</div>
+            </div>
+          </div>
+
+          <div class="case-section">
+            <div class="case-section-label">Demo video</div>
+            <div class="media-frame">
+              <!-- CUSTOMIZE: once ready, replace this div with:
+            <video controls><source src="files/hardware-demo.mp4" type="video/mp4" /></video> -->
+              <video controls>
+                <source src="AMS Report Video.mp4" type="video/mp4" />
+              </video>
+              <div class="media-caption">Walkthrough of the features features</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE STUDY: PROJ-02 -->
+      <div class="panel case-study hidden" id="case-servicedesk">
+        <div class="panel-head">
+          <div class="panel-title">Case study</div>
+          <div class="panel-meta">PROJ-02</div>
+        </div>
+        <div class="panel-body">
+          <button class="case-back" onclick="showList()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M19 12H5M12 5l-7 7 7 7" />
+            </svg>
+            Back to all projects
+          </button>
+
+          <div class="case-header">
+            <div class="case-id">PROJ-02</div>
+            <h2>Service Desk Analytics Dashboard</h2>
+            <div class="case-tags">
+              <span class="proj-tag">POWER BI</span>
+              <span class="proj-tag">DAX</span>
+              <span class="proj-tag">KPI DESIGN</span>
+              <span class="proj-tag">SHAREPOINT</span>
+            </div>
+            <p class="case-desc">
+              End-to-end Power BI solution analyzing IT service desk tickets from SharePoint Online,
+              surfacing SLA compliance, ticket trends, and team performance KPIs. Built to help the
+              IT team track workload and service quality in real time.
+            </p>
+          </div>
+
+          <div class="case-section">
+            <div class="case-section-label">Documentation</div>
+            <div class="pdf-grid">
+              <a href="files/YOUR-PDF-1.pdf" class="pdf-card" target="_blank" rel="noopener">
+                <div class="pdf-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.75">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                  </svg></div>
+                <div>
+                  <div class="pdf-title">Project Documentation</div>
+                  <div class="pdf-sub">Technical write-up · PDF</div>
+                </div>
+              </a>
+              <a href="files/YOUR-PDF-2.pdf" class="pdf-card" target="_blank" rel="noopener">
+                <div class="pdf-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.75">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                  </svg></div>
+                <div>
+                  <div class="pdf-title">KPI Design Report</div>
+                  <div class="pdf-sub">Presentation deck · PDF</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="case-section">
+            <div class="case-section-label">Screenshot</div>
+            <div class="media-frame">
+              <div class="media-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" />
+                </svg>
+                <span>Screenshot coming soon</span>
+              </div>
+              <div class="media-caption">Dashboard overview — Service Desk Analytics</div>
+            </div>
+          </div>
+
+          <div class="case-section">
+            <div class="case-section-label">Demo video</div>
+            <div class="media-frame">
+              <div class="media-placeholder" style="min-height:300px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="10" />
+                  <polygon points="10 8 16 12 10 16 10 8" />
+                </svg>
+                <span>Demo video coming soon</span>
+              </div>
+              <div class="media-caption">Walkthrough of SLA tracking, ticket trends, and KPI panels</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE STUDY: PROJ-03 (template for future projects) -->
+    <div class="panel case-study hidden" id="case-next">
+      <div class="panel-head">
+        <div class="panel-title">Case study</div>
+        <div class="panel-meta">PROJ-03</div>
+      </div>
+      <div class="panel-body">
+        <button class="case-back" onclick="showList()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          Back to all projects
+        </button>
+        <div class="case-header">
+          <div class="case-id">PROJ-03</div>
+          <h2>Your next project</h2>
+          <p class="case-desc">Fill in this template panel with the title, tags, description, PDFs, screenshot, and
+            video for your next project.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+      <!-- ===================== SKILLS TAB ===================== -->
+      <div class="dash-view" id="view-skills">
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Skill proficiency by domain</div>
+            <div class="panel-meta">PANEL/04 · 15 METRICS</div>
+          </div>
+          <div class="panel-body">
+            <div class="skills-grid">
+
+              <div class="skill-card">
+                <div class="skill-card-title">BI &amp; Visualization</div>
+                <div class="skill-donut">
+                  <svg width="130" height="130" viewBox="0 0 150 150">
+                    <circle cx="75" cy="75" r="60" fill="none" stroke="#1A2C40" stroke-width="18" />
+                    <circle cx="75" cy="75" r="60" fill="none" stroke="#C9A96E" stroke-width="18"
+                      stroke-dasharray="102.01 274.98" stroke-dashoffset="0" stroke-linecap="round" />
+                    <circle cx="75" cy="75" r="60" fill="none" stroke="#5B9BD5" stroke-width="18"
+                      stroke-dasharray="94.25 282.74" stroke-dashoffset="-104.01" stroke-linecap="round" />
+                    <circle cx="75" cy="75" r="60" fill="none" stroke="#4ADE80" stroke-width="18"
+                      stroke-dasharray="97.57 279.42" stroke-dashoffset="-200.26" stroke-linecap="round" />
+                    <circle cx="75" cy="75" r="60" fill="none" stroke="#E89B5C" stroke-width="18"
+                      stroke-dasharray="83.16 293.83" stroke-dashoffset="-299.83" stroke-linecap="round" />
+                  </svg>
+                  <div class="skill-donut-c">
+                    <div class="v">85%</div>
+                    <div class="l">AVG</div>
+                  </div>
+                </div>
+                <div class="sk-legend">
+                  <div class="sk-row"><span class="sk-dot" style="background:#C9A96E;"></span><span
+                      class="sk-name">Power
+                      BI</span><span class="sk-val">92%</span></div>
+                  <div class="sk-row"><span class="sk-dot" style="background:#5B9BD5;"></span><span
+                      class="sk-name">DAX</span><span class="sk-val">85%</span></div>
+                  <div class="sk-row"><span class="sk-dot" style="background:#4ADE80;"></span><span
+                      class="sk-name">Power
+                      Query</span><span class="sk-val">88%</span></div>
+                  <div class="sk-row"><span class="sk-dot" style="background:#E89B5C;"></span><span class="sk-name">M
+                      Language</span><span class="sk-val">75%</span></div>
+                </div>
+              </div>
+
+              <div class="skill-card">
+                <div class="skill-card-title">Data &amp; Cloud</div>
+                <div class="skill-donut">
+                  <svg width="130" height="130" viewBox="0 0 150 150">
+                    <circle cx="75" cy="75" r="60" fill="none" stroke="#1A2C40" stroke-width="18" />
+                    <circle cx="75" cy="75" r="60" fill="none" stroke="#C9A96E" stroke-width="18"
+                      stroke-dasharray="98.88 278.11" stroke-dashoffset="0" stroke-linecap="round" />
+                    <circle cx="75" cy="75" r="60" fill="none" stroke="#5B9BD5" stroke-width="18"
+                      stroke-dasharray="92.70 284.29" stroke-dashoffset="-100.88" stroke-linecap="round" />
+                    <circle cx="75" cy="75" r="60" fill="none" stroke="#4ADE80" stroke-width="18"
+                      stroke-dasharray="80.34 296.65" stroke-dashoffset="-193.58" stroke-linecap="round" />
+                    <circle cx="75" cy="75" r="60" fill="none" stroke="#E89B5C" stroke-width="18"
+                      stroke-dasharray="105.06 271.93" stroke-dashoffset="-273.92" stroke-linecap="round" />
+                  </svg>
+                  <div class="skill-donut-c">
+                    <div class="v">76%</div>
+                    <div class="l">AVG</div>
+                  </div>
+                </div>
+                <div class="sk-legend">
+                  <div class="sk-row"><span class="sk-dot" style="background:#C9A96E;"></span><span
+                      class="sk-name">SQL</span><span class="sk-val">80%</span></div>
+                  <div class="sk-row"><span class="sk-dot" style="background:#5B9BD5;"></span><span
+                      class="sk-name">Azure</span><span class="sk-val">75%</span></div>
+                  <div class="sk-row"><span class="sk-dot" style="background:#4ADE80;"></span><span
+                      class="sk-name">Fabric</span><span class="sk-val">65%</span></div>
+                  <div class="sk-row"><span class="sk-dot" style="background:#E89B5C;"></span><span
+                      class="sk-name">SharePoint</span><span class="sk-val">85%</span></div>
+                </div>
+              </div>
+
+              <div class="skill-card">
+                <div class="skill-card-title">Programming</div>
+                <div class="skill-donut">
+                  <svg width="130" height="130" viewBox="0 0 150 150">
+                    <circle cx="75" cy="75" r="60" fill="none" stroke="#1A2C40" stroke-width="18" />
+                    <circle cx="75" cy="75" r="60" fill="none" stroke="#C9A96E" stroke-width="18"
+                      stroke-dasharray="104.72 272.27" stroke-dashoffset="0" stroke-linecap="round" />
+                    <circle cx="75" cy="75" r="60" fill="none" stroke="#5B9BD5" stroke-width="18"
+                      stroke-dasharray="134.64 242.35" stroke-dashoffset="-106.72" stroke-linecap="round" />
+                    <circle cx="75" cy="75" r="60" fill="none" stroke="#4ADE80" stroke-width="18"
+                      stroke-dasharray="137.63 239.36" stroke-dashoffset="-243.36" stroke-linecap="round" />
+                  </svg>
+                  <div class="skill-donut-c">
+                    <div class="v">84%</div>
+                    <div class="l">AVG</div>
+                  </div>
+                </div>
+                <div class="sk-legend">
+                  <div class="sk-row"><span class="sk-dot" style="background:#C9A96E;"></span><span
+                      class="sk-name">Python</span><span class="sk-val">70%</span></div>
+                  <div class="sk-row"><span class="sk-dot" style="background:#5B9BD5;"></span><span
+                      class="sk-name">Alteryx</span><span class="sk-val">90%</span></div>
+                  <div class="sk-row"><span class="sk-dot" style="background:#4ADE80;"></span><span
+                      class="sk-name">Excel</span><span class="sk-val">92%</span></div>
+                </div>
+              </div>
+
+              <div class="skill-card">
+                <div class="skill-card-title">IT &amp; Operations</div>
+                <div class="skill-donut">
+                  <svg width="130" height="130" viewBox="0 0 150 150">
+                    <circle cx="75" cy="75" r="60" fill="none" stroke="#1A2C40" stroke-width="18" />
+                    <circle cx="75" cy="75" r="60" fill="none" stroke="#C9A96E" stroke-width="18"
+                      stroke-dasharray="88.91 288.08" stroke-dashoffset="0" stroke-linecap="round" />
+                    <circle cx="75" cy="75" r="60" fill="none" stroke="#5B9BD5" stroke-width="18"
+                      stroke-dasharray="82.99 294.01" stroke-dashoffset="-90.91" stroke-linecap="round" />
+                    <circle cx="75" cy="75" r="60" fill="none" stroke="#4ADE80" stroke-width="18"
+                      stroke-dasharray="104.32 272.67" stroke-dashoffset="-173.90" stroke-linecap="round" />
+                    <circle cx="75" cy="75" r="60" fill="none" stroke="#E89B5C" stroke-width="18"
+                      stroke-dasharray="100.77 276.22" stroke-dashoffset="-278.22" stroke-linecap="round" />
+                  </svg>
+                  <div class="skill-donut-c">
+                    <div class="v">80%</div>
+                    <div class="l">AVG</div>
+                  </div>
+                </div>
+                <div class="sk-legend">
+                  <div class="sk-row"><span class="sk-dot" style="background:#C9A96E;"></span><span class="sk-name">ITIL
+                      5</span><span class="sk-val">75%</span></div>
+                  <div class="sk-row"><span class="sk-dot" style="background:#5B9BD5;"></span><span
+                      class="sk-name">Fortinet</span><span class="sk-val">70%</span></div>
+                  <div class="sk-row"><span class="sk-dot" style="background:#4ADE80;"></span><span
+                      class="sk-name">Service
+                      Desk</span><span class="sk-val">88%</span></div>
+                  <div class="sk-row"><span class="sk-dot" style="background:#E89B5C;"></span><span
+                      class="sk-name">Asset
+                      Mgmt</span><span class="sk-val">85%</span></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== CERTIFICATIONS TAB ===================== -->
+      <div class="dash-view" id="view-certs">
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Certification log</div>
+            <div class="panel-meta">PANEL/05 · 7 RECORDS</div>
+          </div>
+          <div class="panel-body" style="padding:0;">
+            <table class="cert-table">
+              <thead>
+                <tr>
+                  <th>Certification</th>
+                  <th>Issuer</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="cert-dot a"></span>Microsoft PL-300 — Power BI Data Analyst</td>
+                  <td class="mono" style="color:var(--beige-dim);">Microsoft</td>
+                  <td><span class="status-pill active">Active</span></td>
+                </tr>
+                <tr>
+                  <td><span class="cert-dot a"></span>Microsoft DP-900 — Azure Data Fundamentals</td>
+                  <td class="mono" style="color:var(--beige-dim);">Microsoft</td>
+                  <td><span class="status-pill active">Active</span></td>
+                </tr>
+                <tr>
+                  <td><span class="cert-dot a"></span>Microsoft AZ-900 — Azure Fundamentals</td>
+                  <td class="mono" style="color:var(--beige-dim);">Microsoft</td>
+                  <td><span class="status-pill active">Active</span></td>
+                </tr>
+                <tr>
+                  <td><span class="cert-dot a"></span>Alteryx Designer Core &amp; Advanced</td>
+                  <td class="mono" style="color:var(--beige-dim);">Alteryx</td>
+                  <td><span class="status-pill active">Active</span></td>
+                </tr>
+                <tr>
+                  <td><span class="cert-dot a"></span>Fortinet NSE 1, 2 &amp; 3</td>
+                  <td class="mono" style="color:var(--beige-dim);">Fortinet</td>
+                  <td><span class="status-pill active">Active</span></td>
+                </tr>
+                <tr>
+                  <td><span class="cert-dot p"></span>Microsoft DP-600 — Fabric Analytics Engineer</td>
+                  <td class="mono" style="color:var(--beige-dim);">Microsoft</td>
+                  <td><span class="status-pill progress">In progress</span></td>
+                </tr>
+                <tr>
+                  <td><span class="cert-dot p"></span>ITIL 5 Foundation</td>
+                  <td class="mono" style="color:var(--beige-dim);">AXELOS / PeopleCert</td>
+                  <td><span class="status-pill progress">In progress</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== CONTACT TAB ===================== -->
+      <div class="dash-view" id="view-contact">
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Connect</div>
+            <div class="panel-meta">PANEL/06</div>
+          </div>
+          <div class="panel-body">
+            <div class="contact-grid">
+
+              <!-- CUSTOMIZE: replace YOUR-LINKEDIN-HANDLE -->
+              <a href="https://linkedin.com/in/morshedy" class="contact-card" target="_blank" rel="noopener">
+                <div class="contact-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                    <rect x="2" y="9" width="4" height="12" />
+                    <circle cx="4" cy="4" r="2" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact-name">LinkedIn</div>
+                  <div class="contact-detail">/in/morshedy</div>
+                </div>
+              </a>
+
+              <!-- CUSTOMIZE: replace YOUR-EMAIL@example.com -->
+              <a href="mailto:morshedy3008@gmail.com" class="contact-card">
+                <div class="contact-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact-name">Email</div>
+                  <div class="contact-detail">morshedy3008@gmail.com</div>
+                </div>
+              </a>
+
+              <!-- CUSTOMIZE: replace YOUR-PHONE-NUMBER, international format no + or spaces -->
+              <a href="https://wa.me/+201098255187" class="contact-card" target="_blank" rel="noopener">
+                <div class="contact-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact-name">WhatsApp</div>
+                  <div class="contact-detail">message me directly</div>
+                </div>
+              </a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-footer">
+        © 2025 Mahmoud Morshedy · Built with HTML, CSS &amp; JS · Hosted on GitHub Pages
+      </div>
+
+      <script>
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.dash-view').forEach(v => v.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('view-' + btn.dataset.tab).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+        });
+
+        function showCase(id) {
+          document.getElementById('projects-list').classList.add('hidden');
+          document.querySelectorAll('.case-study').forEach(c => c.classList.add('hidden'));
+          document.getElementById(id).classList.remove('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showList() {
+          document.querySelectorAll('.case-study').forEach(c => c.classList.add('hidden'));
+          document.getElementById('projects-list').classList.remove('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      </script>
+
+</body>
+
+</html>
