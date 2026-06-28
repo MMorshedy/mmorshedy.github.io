@@ -7,21 +7,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital@1&display=swap" rel="stylesheet"/>
 <style>
 :root{
-  --bg:        #09090f;
-  --bg1:       #0e0e17;
-  --bg2:       #13131e;
-  --bg3:       #181826;
-  --border:    #1f1f30;
-  --border2:   #2a2a40;
-  --muted:     #6b6b90;
-  --dim:       #3d3d58;
-  --text:      #c4c4dc;
-  --bright:    #eeeef8;
-  --v:         #7c3aed;
-  --v2:        #9d5ff5;
-  --v3:        #b98ef7;
-  --vglow:     rgba(124,58,237,0.18);
-  --vdim:      rgba(124,58,237,0.08);
+  --bg:        #0b0d14;
+  --bg1:       #0f1219;
+  --bg2:       #141720;
+  --bg3:       #1a1e2a;
+  --border:    #1e2235;
+  --border2:   #2a3048;
+  --muted:     #8a8fa8;
+  --dim:       #3d4460;
+  --text:      #c8cab8;
+  --bright:    #edebd8;
+  --v:         #2a5298;
+  --v2:        #4a78c8;
+  --v3:        #d4b896;
+  --vglow:     rgba(42,82,152,0.18);
+  --vdim:      rgba(42,82,152,0.09);
   --f:         'Outfit',sans-serif;
   --serif:     'Playfair Display',serif;
 }
@@ -63,7 +63,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
 .bar-pill{
   font-size:10px;font-weight:600;color:var(--v3);
   letter-spacing:0.12em;text-transform:uppercase;
-  border:1px solid rgba(124,58,237,0.35);
+  border:1px solid rgba(212,184,150,0.35);
   background:var(--vdim);padding:4px 12px;border-radius:20px;
 }
 
@@ -99,7 +99,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
   letter-spacing:0.2em;text-transform:uppercase;
   margin-bottom:16px;display:flex;align-items:center;gap:10px;
 }
-.cell-name-tag::before{content:'';width:20px;height:1px;background:var(--v)}
+.cell-name-tag::before{content:'';width:20px;height:1px;background:var(--v3)}
 .cell-name h1{
   font-size:clamp(38px,5.5vw,68px);font-weight:900;
   line-height:0.92;letter-spacing:-0.04em;color:var(--bright);
@@ -144,8 +144,8 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
 .cs1 .cell-stat-val{color:var(--v3)}
 .cs1::after{background:linear-gradient(90deg,var(--v),transparent)}
 .cs2{grid-column:3/4;grid-row:1/2}
-.cs2 .cell-stat-val{color:#60d9c8}
-.cs2::after{background:linear-gradient(90deg,#60d9c8,transparent)}
+.cs2 .cell-stat-val{color:#c8a87a}
+.cs2::after{background:linear-gradient(90deg,#c8a87a,transparent)}
 
 /* CHART CELL — full width */
 .cell-chart{
@@ -215,11 +215,11 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
 }
 .proj-card::before{
   content:'';position:absolute;left:0;top:0;bottom:0;width:0;
-  background:linear-gradient(180deg,var(--v),var(--v2));
+  background:linear-gradient(180deg,var(--v2),var(--v));
   transition:width .25s cubic-bezier(0.22,1,0.36,1);
   border-radius:10px 0 0 10px;
 }
-.proj-card:hover{border-color:rgba(124,58,237,0.4);background:var(--bg2)}
+.proj-card:hover{border-color:rgba(42,82,152,0.5);background:var(--bg2)}
 .proj-card:hover::before{width:3px}
 
 .proj-num{
@@ -248,7 +248,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
   font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
   padding:3px 9px;border-radius:3px;border:1px solid var(--border2);color:var(--muted);
 }
-.chip.v{color:var(--v3);border-color:rgba(124,58,237,0.3);background:var(--vdim)}
+.chip.v{color:var(--v3);border-color:rgba(212,184,150,0.3);background:var(--vdim)}
 
 .proj-right{
   display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;
@@ -256,15 +256,16 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
 }
 .proj-year{font-size:11px;font-weight:700;color:var(--dim);letter-spacing:0.1em}
 .proj-arrow{
-  width:38px;height:38px;border-radius:50%;
-  border:1px solid var(--border2);
-  display:flex;align-items:center;justify-content:center;
-  font-size:15px;color:var(--dim);
-  transition:border-color .2s,color .2s,background .2s,transform .2s;
+  font-family:var(--f);font-size:10px;font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--dim);white-space:nowrap;
+  padding:6px 10px;border:1px solid var(--border2);border-radius:4px;
+  display:flex;align-items:center;gap:6px;
+  transition:border-color .2s,color .2s,background .2s;
 }
 .proj-card:hover .proj-arrow{
-  border-color:var(--v);color:var(--v3);
-  background:var(--vdim);transform:rotate(45deg);
+  border-color:var(--v3);color:var(--v3);
+  background:var(--vdim);
 }
 
 /* ══════════════════════════════════════
@@ -322,7 +323,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
   border:1px solid var(--border);border-radius:6px;cursor:pointer;
   transition:border-color .15s,background .15s;background:var(--bg2);
 }
-.pdf-row:hover{border-color:rgba(124,58,237,0.4);background:var(--bg3)}
+.pdf-row:hover{border-color:rgba(212,184,150,0.4);background:var(--bg3)}
 .pdf-ico{
   width:30px;height:36px;border-radius:4px;
   background:var(--bg3);border:1px solid var(--border2);
@@ -342,7 +343,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
   gap:10px;cursor:pointer;transition:border-color .15s,background .15s;
   background:var(--bg2);
 }
-.med-ph:hover{border-color:rgba(124,58,237,0.4);background:var(--bg3)}
+.med-ph:hover{border-color:rgba(42,82,152,0.4);background:var(--bg3)}
 .med-icon{font-size:22px;opacity:0.25}
 .med-lbl{font-size:9px;font-weight:700;color:var(--dim);letter-spacing:0.18em;text-transform:uppercase}
 .med-sub{font-size:11px;color:var(--dim);text-align:center;line-height:1.6}
@@ -384,7 +385,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
 <!-- TOPBAR -->
 <header class="bar">
   <span class="bar-logo">MM</span>
-  <span class="bar-mid">BI Engineer</span>
+  <span class="bar-mid">BI Enhineer</span>
   <div class="bar-r">
     <button class="bar-back" id="back-btn" onclick="showPage('home')">
       <svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5"/></svg>
@@ -402,11 +403,10 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
 
     <!-- NAME -->
     <div class="cell cell-name">
-      <div class="cell-name-tag">BI Engineer · PwC ETIC · Cairo</div>
+      <div class="cell-name-tag">BI Engineer · PwC ETIC · Cairo, Egypt </div>
       <h1>Mahmoud<br><em>Morshedy</em></h1>
       <p class="cell-tagline">turning data into decisions</p>
       <div class="cell-role">
-        <strong>PwC ETIC</strong> · Cairo, Egypt<br>
         Power BI &nbsp;·&nbsp; DAX &nbsp;·&nbsp; SQL &nbsp;·&nbsp; Azure &nbsp;·&nbsp; Alteryx
       </div>
     </div>
@@ -424,14 +424,14 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
     </div>
 
     <!-- STAT 2 -->
-    <div class="cell cell-stat cs2">
+    <div class="cell cell-stat cs2" onclick="showPage('certs')" style="cursor:pointer">
       <div>
-        <div class="cell-stat-val" style="color:#60d9c8">7</div>
+        <div class="cell-stat-val" style="color:#d4b896">7</div>
         <div class="cell-stat-lbl">Certifications</div>
-        <div class="cell-stat-sub">PL-300 · AZ-900…</div>
+        <div class="cell-stat-sub">Microsoft · Alteryx</div>
       </div>
-      <div style="font-size:9px;font-weight:700;color:var(--dim);letter-spacing:0.14em;text-transform:uppercase">
-        12+ Skills
+      <div style="font-size:9px;font-weight:700;color:var(--v3);letter-spacing:0.14em;text-transform:uppercase">
+        View All &nbsp;→
       </div>
     </div>
 
@@ -447,19 +447,19 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
         <div class="ch-lbl">DAX</div>
       </div>
       <div class="ch-col">
-        <div class="ch-bar-wrap"><div class="ch-bar" data-h="82" data-val="SQL · 82" style="background:linear-gradient(180deg,#60d9c8,#2da89a);height:0"></div></div>
+        <div class="ch-bar-wrap"><div class="ch-bar" data-h="82" data-val="SQL · 82" style="background:linear-gradient(180deg,#c8a87a,#a07a50);height:0"></div></div>
         <div class="ch-lbl">SQL</div>
       </div>
       <div class="ch-col">
-        <div class="ch-bar-wrap"><div class="ch-bar" data-h="78" data-val="Alteryx · 78" style="background:linear-gradient(180deg,#60d9c8,#2da89a);height:0"></div></div>
+        <div class="ch-bar-wrap"><div class="ch-bar" data-h="78" data-val="Alteryx · 78" style="background:linear-gradient(180deg,#c8a87a,#a07a50);height:0"></div></div>
         <div class="ch-lbl">Alteryx</div>
       </div>
       <div class="ch-col">
-        <div class="ch-bar-wrap"><div class="ch-bar" data-h="72" data-val="Azure · 72" style="background:linear-gradient(180deg,#a78bfa,#7c3aed);height:0"></div></div>
+        <div class="ch-bar-wrap"><div class="ch-bar" data-h="72" data-val="Azure · 72" style="background:linear-gradient(180deg,#4a78c8,#2a5298);height:0"></div></div>
         <div class="ch-lbl">Azure</div>
       </div>
       <div class="ch-col">
-        <div class="ch-bar-wrap"><div class="ch-bar" data-h="65" data-val="Python · 65" style="background:linear-gradient(180deg,#a78bfa,#7c3aed);height:0"></div></div>
+        <div class="ch-bar-wrap"><div class="ch-bar" data-h="65" data-val="Python · 65" style="background:linear-gradient(180deg,#4a78c8,#2a5298);height:0"></div></div>
         <div class="ch-lbl">Python</div>
       </div>
     </div>
@@ -474,55 +474,55 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
     </div>
     <div class="proj-grid">
 
-      <div class="proj-card" onclick="showProject(0)">
+      <div class="proj-card" onclick="showProject(0)" onclick="showProject(0)">
         <div class="proj-num">01</div>
         <div class="proj-body">
           <div class="proj-title">Assets Monitoring System</div>
           <div class="proj-brief">Real-time asset lifecycle tracking from procurement to decommission — surfacing aging inventory, underutilised assets, and maintenance SLAs in one view.</div>
           <div class="proj-chips">
             <span class="chip v">Power BI</span><span class="chip">DAX</span>
-            <span class="chip">Power Query</span><span class="chip">IT Operations</span>
+            <span class="chip">Power Query</span><span class="chip">Sharepoint Online Lists</span>
           </div>
         </div>
         <div class="proj-right">
           <span class="proj-year">2024</span>
-          <div class="proj-arrow">↗</div>
+          <div class="proj-arrow">View Project &nbsp;→</div>
         </div>
       </div>
 
-      <div class="proj-card" onclick="showProject(1)">
+      <div class="proj-card" onclick="showProject(1)" onclick="showProject(0)">
         <div class="proj-num">02</div>
         <div class="proj-body">
           <div class="proj-title">Service Desk Analytics</div>
           <div class="proj-brief">End-to-end analytics covering ticket volumes, resolution times, SLA compliance, and agent productivity — enabling data-driven shift planning.</div>
           <div class="proj-chips">
-            <span class="chip v">Power BI</span><span class="chip">SQL</span>
-            <span class="chip">ITSM</span><span class="chip">ITIL</span>
+            <span class="chip v">Power BI</span><span class="chip">DAX</span>
+            <span class="chip">Power Query</span><span class="chip">JIRA</span>
           </div>
         </div>
         <div class="proj-right">
           <span class="proj-year">2024</span>
-          <div class="proj-arrow">↗</div>
+          <div class="proj-arrow">View Project &nbsp;→</div>
         </div>
       </div>
 
-      <div class="proj-card" onclick="showProject(2)">
+      <div class="proj-card" onclick="showProject(2)" onclick="showProject(0)">
         <div class="proj-num">03</div>
         <div class="proj-body">
-          <div class="proj-title">Project Title Three</div>
+          <div class="proj-title">Netflix Analytics</div>
           <div class="proj-brief">Replace with your actual description — what problem it solved, what data it exposed, and what decision it enabled.</div>
           <div class="proj-chips">
-            <span class="chip v">Power BI</span><span class="chip">Azure</span>
-            <span class="chip">Your Domain</span>
+            <span class="chip v">Power BI</span><span class="chip">DAX</span>
+            <span class="chip">Power Query</span>
           </div>
         </div>
         <div class="proj-right">
           <span class="proj-year">2025</span>
-          <div class="proj-arrow">↗</div>
+          <div class="proj-arrow">View Project &nbsp;→</div>
         </div>
       </div>
 
-      <div class="proj-card" onclick="showProject(3)">
+      <div class="proj-card" onclick="showProject(3)" onclick="showProject(0)">
         <div class="proj-num">04</div>
         <div class="proj-body">
           <div class="proj-title">Project Title Four</div>
@@ -534,7 +534,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
         </div>
         <div class="proj-right">
           <span class="proj-year">2025</span>
-          <div class="proj-arrow">↗</div>
+          <div class="proj-arrow">View Project &nbsp;→</div>
         </div>
       </div>
 
@@ -566,7 +566,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
 
     <div class="ap">
       <div class="ap-head">
-        <div class="ap-dot" style="background:#f6a823"></div>
+        <div class="ap-dot" style="background:#c8a87a"></div>
         <div class="ap-lbl">Documents</div>
         <div class="ap-ct">3 PDFs</div>
       </div>
@@ -578,7 +578,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
               <div class="pdf-name" id="pdf1">Project Brief.pdf</div>
               <div class="pdf-sub">PDF Document</div>
             </div>
-            <div class="pdf-act">View ↗</div>
+            <div class="pdf-act">View Document &nbsp;→</div>
           </div>
           <div class="pdf-row" onclick="alert('Link your PDF here')">
             <div class="pdf-ico">📄</div>
@@ -586,7 +586,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
               <div class="pdf-name" id="pdf2">Technical Documentation.pdf</div>
               <div class="pdf-sub">PDF Document</div>
             </div>
-            <div class="pdf-act">View ↗</div>
+            <div class="pdf-act">View Document &nbsp;→</div>
           </div>
           <div class="pdf-row" onclick="alert('Link your PDF here')">
             <div class="pdf-ico">📄</div>
@@ -594,7 +594,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
               <div class="pdf-name" id="pdf3">Results & Impact.pdf</div>
               <div class="pdf-sub">PDF Document</div>
             </div>
-            <div class="pdf-act">View ↗</div>
+            <div class="pdf-act">View Document &nbsp;→</div>
           </div>
         </div>
       </div>
@@ -607,7 +607,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
         <div class="ap-ct">1 Image</div>
       </div>
       <div class="ap-body">
-        <div class="med-ph" onclick="alert('Assts Monitoring System\Model.png')">
+        <div class="med-ph" onclick="alert('Link your image here')">
           <div class="med-icon">🖼</div>
           <div class="med-lbl">Screenshot</div>
           <div class="med-sub">Upload your Power BI<br>dashboard screenshot</div>
@@ -617,7 +617,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
 
     <div class="ap wide">
       <div class="ap-head">
-        <div class="ap-dot" style="background:#f87171"></div>
+        <div class="ap-dot" style="background:#c47a7a"></div>
         <div class="ap-lbl">Walkthrough Video</div>
         <div class="ap-ct">1 Video</div>
       </div>
@@ -632,6 +632,179 @@ body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100v
 
   </div>
 </div><!-- /detail -->
+
+
+<!-- ══════════════════════ CERTS LIST PAGE ══════════════════════ -->
+<div class="page" id="page-certs">
+  <div class="det-hero" style="display:block">
+    <div class="det-crumb">
+      <span style="cursor:pointer;color:var(--v3)" onclick="showPage('home')">Overview</span>
+      <span style="color:var(--border2)">/</span>
+      <span class="det-crumb-cur">Certifications</span>
+    </div>
+    <h2 class="det-title" style="margin-top:12px">My Certifications</h2>
+    <p class="det-desc">Click any certification to view the credential document or badge.</p>
+  </div>
+
+  <div class="proj-section" style="padding-top:8px">
+    <div class="proj-grid">
+
+      <div class="proj-card" onclick="showCertFile(0)">
+        <div class="proj-num" style="color:var(--v3)">01</div>
+        <div class="proj-body">
+          <div class="proj-title">Microsoft PL-300</div>
+          <div class="proj-brief">Power BI Data Analyst Associate — data preparation, modelling, visualisation, and deployment using Power BI.</div>
+          <div class="proj-chips">
+            <span class="chip v">Microsoft</span><span class="chip">Power BI</span><span class="chip">Data Analytics</span>
+          </div>
+        </div>
+        <div class="proj-right">
+          <span class="proj-year">2023</span>
+          <div class="proj-arrow">View Certificate &nbsp;→</div>
+        </div>
+      </div>
+
+      <div class="proj-card" onclick="showCertFile(1)">
+        <div class="proj-num" style="color:var(--v3)">02</div>
+        <div class="proj-body">
+          <div class="proj-title">Microsoft DP-900</div>
+          <div class="proj-brief">Azure Data Fundamentals — core data concepts and Microsoft Azure data services.</div>
+          <div class="proj-chips">
+            <span class="chip v">Microsoft</span><span class="chip">Azure</span><span class="chip">Data Fundamentals</span>
+          </div>
+        </div>
+        <div class="proj-right">
+          <span class="proj-year">2023</span>
+          <div class="proj-arrow">View Certificate &nbsp;→</div>
+        </div>
+      </div>
+
+      <div class="proj-card" onclick="showCertFile(2)">
+        <div class="proj-num" style="color:var(--v3)">03</div>
+        <div class="proj-body">
+          <div class="proj-title">Microsoft AZ-900</div>
+          <div class="proj-brief">Azure Fundamentals — cloud concepts, Azure architecture, security, and governance.</div>
+          <div class="proj-chips">
+            <span class="chip v">Microsoft</span><span class="chip">Azure</span><span class="chip">Cloud</span>
+          </div>
+        </div>
+        <div class="proj-right">
+          <span class="proj-year">2023</span>
+          <div class="proj-arrow">View Certificate &nbsp;→</div>
+        </div>
+      </div>
+
+      <div class="proj-card" onclick="showCertFile(3)">
+        <div class="proj-num" style="color:var(--v3)">04</div>
+        <div class="proj-body">
+          <div class="proj-title">Alteryx Designer Core</div>
+          <div class="proj-brief">Proficiency in data blending, preparation, and analytic workflow automation in Alteryx Designer.</div>
+          <div class="proj-chips">
+            <span class="chip v">Alteryx</span><span class="chip">Data Prep</span><span class="chip">ETL</span>
+          </div>
+        </div>
+        <div class="proj-right">
+          <span class="proj-year">2024</span>
+          <div class="proj-arrow">View Certificate &nbsp;→</div>
+        </div>
+      </div>
+
+      <div class="proj-card" onclick="showCertFile(4)">
+        <div class="proj-num" style="color:var(--v3)">05</div>
+        <div class="proj-body">
+          <div class="proj-title">Alteryx Designer Advanced</div>
+          <div class="proj-brief">Spatial analysis, predictive modelling, iterative macros, and complex workflow optimisation.</div>
+          <div class="proj-chips">
+            <span class="chip v">Alteryx</span><span class="chip">Advanced Analytics</span><span class="chip">Macros</span>
+          </div>
+        </div>
+        <div class="proj-right">
+          <span class="proj-year">2024</span>
+          <div class="proj-arrow">View Certificate &nbsp;→</div>
+        </div>
+      </div>
+
+      <div class="proj-card" onclick="showCertFile(5)">
+        <div class="proj-num" style="color:var(--v3)">06</div>
+        <div class="proj-body">
+          <div class="proj-title">Fortinet NSE 1 / 2 / 3</div>
+          <div class="proj-brief">Network Security Expert levels 1–3 — cybersecurity awareness, threat landscape, and Fortinet fundamentals.</div>
+          <div class="proj-chips">
+            <span class="chip v">Fortinet</span><span class="chip">Cybersecurity</span><span class="chip">Networking</span>
+          </div>
+        </div>
+        <div class="proj-right">
+          <span class="proj-year">2023</span>
+          <div class="proj-arrow">View Certificate &nbsp;→</div>
+        </div>
+      </div>
+
+      <div class="proj-card" onclick="showCertFile(6)" style="opacity:0.72">
+        <div class="proj-num" style="color:var(--dim)">07</div>
+        <div class="proj-body">
+          <div class="proj-title" style="color:var(--muted)">Microsoft DP-600
+            <span style="font-size:9px;font-weight:700;color:var(--dim);letter-spacing:0.1em;margin-left:8px;border:1px solid var(--dim);padding:2px 7px;border-radius:2px">IN PROGRESS</span>
+          </div>
+          <div class="proj-brief">Fabric Analytics Engineer Associate — Microsoft Fabric, lakehouses, pipelines, and semantic models.</div>
+          <div class="proj-chips">
+            <span class="chip">Microsoft</span><span class="chip">Fabric</span><span class="chip">Analytics Engineering</span>
+          </div>
+        </div>
+        <div class="proj-right">
+          <span class="proj-year">2025</span>
+          <div class="proj-arrow" style="border-style:dashed">—</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div><!-- /certs -->
+
+<!-- ══════════════════════ CERT FILE VIEWER ══════════════════════ -->
+<div class="page" id="page-certview">
+  <div class="det-hero" style="display:block">
+    <div class="det-crumb">
+      <span style="cursor:pointer;color:var(--v3)" onclick="showPage('home')">Overview</span>
+      <span style="color:var(--border2)">/</span>
+      <span style="cursor:pointer;color:var(--v3)" onclick="showPage('certs')">Certifications</span>
+      <span style="color:var(--border2)">/</span>
+      <span class="det-crumb-cur" id="cv-title-crumb">—</span>
+    </div>
+    <h2 class="det-title" id="cv-title" style="margin-top:12px">—</h2>
+    <p class="det-desc" id="cv-desc">—</p>
+  </div>
+
+  <div style="padding:28px 32px 80px">
+    <!-- File viewer area -->
+    <div class="ap" style="max-width:860px">
+      <div class="ap-head">
+        <div class="ap-dot" style="background:var(--v3)"></div>
+        <div class="ap-lbl" id="cv-file-label">Certificate / Badge</div>
+        <div class="ap-ct" id="cv-file-type">PDF or Image</div>
+      </div>
+      <div class="ap-body" style="padding:20px">
+
+        <!-- PDF embed -->
+        <div id="cv-pdf-wrap" style="display:none">
+          <iframe id="cv-pdf" src="" style="width:100%;height:600px;border:1px solid var(--border);border-radius:6px;background:var(--bg2)"></iframe>
+        </div>
+
+        <!-- Image embed -->
+        <div id="cv-img-wrap" style="display:none;text-align:center">
+          <img id="cv-img" src="" alt="Certificate" style="max-width:100%;border-radius:6px;border:1px solid var(--border)"/>
+        </div>
+
+        <!-- Placeholder (no file linked yet) -->
+        <div id="cv-placeholder" class="med-ph" style="aspect-ratio:4/3" onclick="alert('Replace the file path in the certs data array in the script')">
+          <div class="med-icon">🎖</div>
+          <div class="med-lbl">Certificate File</div>
+          <div class="med-sub" id="cv-placeholder-hint">Link your PDF or image file path<br>in the script's certs array</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div><!-- /certview -->
 
 <script>
 const projects=[
@@ -653,6 +826,45 @@ const projects=[
    year:"2025",pdfs:["Project Brief.pdf","Technical Documentation.pdf","Results & Impact.pdf"]},
 ];
 
+const certs=[
+  {title:"Microsoft PL-300",desc:"Power BI Data Analyst Associate",file:"",type:"pdf"},
+  {title:"Microsoft DP-900",desc:"Azure Data Fundamentals",file:"",type:"pdf"},
+  {title:"Microsoft AZ-900",desc:"Azure Fundamentals",file:"",type:"pdf"},
+  {title:"Alteryx Designer Core",desc:"Designer Core Certification",file:"",type:"pdf"},
+  {title:"Alteryx Designer Advanced",desc:"Designer Advanced Certification",file:"",type:"pdf"},
+  {title:"Fortinet NSE 1 / 2 / 3",desc:"Network Security Expert Levels 1–3",file:"",type:"pdf"},
+  {title:"Microsoft DP-600",desc:"Fabric Analytics Engineer Associate (In Progress)",file:"",type:"pdf"},
+];
+
+function showCertFile(i){
+  const c=certs[i];
+  document.getElementById('cv-title-crumb').textContent=c.title;
+  document.getElementById('cv-title').textContent=c.title;
+  document.getElementById('cv-desc').textContent=c.desc;
+  const pdfWrap=document.getElementById('cv-pdf-wrap');
+  const imgWrap=document.getElementById('cv-img-wrap');
+  const ph=document.getElementById('cv-placeholder');
+  const hint=document.getElementById('cv-placeholder-hint');
+  // Reset
+  pdfWrap.style.display='none';
+  imgWrap.style.display='none';
+  ph.style.display='flex';
+  if(c.file){
+    if(c.type==='pdf'){
+      document.getElementById('cv-pdf').src=c.file;
+      pdfWrap.style.display='block';
+      ph.style.display='none';
+    } else {
+      document.getElementById('cv-img').src=c.file;
+      imgWrap.style.display='block';
+      ph.style.display='none';
+    }
+  } else {
+    hint.textContent='Add your file path to certs['+i+'].file in the script';
+  }
+  showPage('certview');
+}
+
 function showProject(i){
   const p=projects[i];
   document.getElementById('det-domain').textContent=p.domain;
@@ -670,13 +882,25 @@ function showProject(i){
   showPage('detail');
 }
 
+
 function showPage(name){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
   const back=document.getElementById('back-btn');
   const pill=document.getElementById('bar-pill');
-  if(name==='detail'){back.style.display='flex';pill.style.display='none'}
-  else{back.style.display='none';pill.style.display='inline-block'}
+  if(name==='home'){
+    back.style.display='none';pill.style.display='inline-block';
+    back.onclick=null;
+  } else if(name==='certs'){
+    back.style.display='flex';pill.style.display='none';
+    back.onclick=()=>showPage('home');
+  } else if(name==='certview'){
+    back.style.display='flex';pill.style.display='none';
+    back.onclick=()=>showPage('certs');
+  } else {
+    back.style.display='flex';pill.style.display='none';
+    back.onclick=()=>showPage('home');
+  }
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
