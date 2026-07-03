@@ -1,918 +1,1662 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Mahmoud Morshedy — BI Engineer</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital@1&display=swap" rel="stylesheet"/>
-<style>
-:root{
-  --bg:        #0b0d14;
-  --bg1:       #0f1219;
-  --bg2:       #141720;
-  --bg3:       #1a1e2a;
-  --border:    #1e2235;
-  --border2:   #2a3048;
-  --muted:     #8a8fa8;
-  --dim:       #3d4460;
-  --text:      #c8cab8;
-  --bright:    #edebd8;
-  --v:         #2a5298;
-  --v2:        #4a78c8;
-  --v3:        #d4b896;
-  --vglow:     rgba(42,82,152,0.18);
-  --vdim:      rgba(42,82,152,0.09);
-  --f:         'Outfit',sans-serif;
-  --serif:     'Playfair Display',serif;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mahmoud — BI Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-/* ── ROUTER ── */
-.page{display:none}.page.active{display:block}
+    :root {
+      --navy-deep: #0D1B2A;
+      --navy-card: #162235;
+      --navy-raised: #1E2F45;
+      --navy-border: #2A3F57;
+      --gold: #C9A96E;
+      --gold-dim: #8C6E3F;
+      --gold-pale: #2A2010;
+      --beige: #E8DCC8;
+      --beige-muted: #A89880;
+      --beige-dim: #6B5F50;
+      --white: #F5F0E8;
+      --radius: 10px;
+      --radius-lg: 16px;
+    }
 
-/* ── TOPBAR ── */
-.bar{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  height:50px;background:rgba(9,9,15,0.9);backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--border);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 32px;
-}
-.bar-logo{
-  font-family:var(--f);font-size:12px;font-weight:800;
-  letter-spacing:0.14em;color:#111120;
-  background:linear-gradient(150deg,#c2c2cc 0%,#eeeef4 35%,#9898a8 65%,#d8d8e4 100%);
-  padding:5px 12px;border-radius:6px;
-  box-shadow:0 1px 5px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.4);
-}
-.bar-mid{
-  font-size:11px;font-weight:500;color:var(--dim);
-  letter-spacing:0.16em;text-transform:uppercase;
-}
-.bar-r{display:flex;align-items:center;gap:16px}
-.bar-back{
-  display:none;align-items:center;gap:7px;
-  font-size:11px;font-weight:600;color:var(--muted);
-  cursor:pointer;background:none;border:none;letter-spacing:0.1em;text-transform:uppercase;
-  transition:color .15s;
-}
-.bar-back:hover{color:var(--v3)}
-.bar-back svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2}
-.bar-pill{
-  font-size:10px;font-weight:600;color:var(--v3);
-  letter-spacing:0.12em;text-transform:uppercase;
-  border:1px solid rgba(212,184,150,0.35);
-  background:var(--vdim);padding:4px 12px;border-radius:20px;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-/* ══════════════════════════════════════
-   HOME — BENTO GRID HERO
-══════════════════════════════════════ */
-#page-home{padding-top:50px}
-.bento-wrap{
-  padding:28px 28px 0;
-  display:grid;
-  grid-template-columns:1fr 220px 200px;
-  grid-template-rows:auto auto;
-  gap:12px;
-}
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy-deep);
+      color: var(--beige);
+      line-height: 1.7;
+      font-size: 16px;
+    }
 
-/* ── CELL BASE ── */
-.cell{
-  background:var(--bg1);
-  border:1px solid var(--border);
-  border-radius:10px;
-  overflow:hidden;
-  position:relative;
-}
+    h1,
+    h2,
+    h3 {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: -0.01em;
+    }
 
-/* NAME CELL — spans 2 cols */
-.cell-name{
-  grid-column:1/2;grid-row:1/2;
-  padding:32px 36px 28px;
-  background:var(--bg2);
-}
-.cell-name-tag{
-  font-size:10px;font-weight:600;color:var(--v3);
-  letter-spacing:0.2em;text-transform:uppercase;
-  margin-bottom:16px;display:flex;align-items:center;gap:10px;
-}
-.cell-name-tag::before{content:'';width:20px;height:1px;background:var(--v3)}
-.cell-name h1{
-  font-size:clamp(38px,5.5vw,68px);font-weight:900;
-  line-height:0.92;letter-spacing:-0.04em;color:var(--bright);
-  margin-bottom:10px;
-}
-.cell-name h1 em{
-  font-style:normal;
-  background:linear-gradient(135deg,var(--v2),var(--v3));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.cell-tagline{
-  font-family:var(--serif);font-style:italic;
-  font-size:14px;color:var(--muted);letter-spacing:0.01em;margin-top:14px;
-}
-.cell-role{
-  margin-top:20px;padding-top:20px;border-top:1px solid var(--border);
-  font-size:12px;color:var(--muted);font-weight:400;line-height:1.6;
-}
-.cell-role strong{color:var(--text);font-weight:600}
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13, 27, 42, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--navy-border);
+      padding: 0 2.5rem;
+      height: 58px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+    }
 
-/* STAT CELLS */
-.cell-stat{
-  padding:24px 22px;
-  display:flex;flex-direction:column;justify-content:space-between;
-}
-.cell-stat-val{
-  font-size:52px;font-weight:900;line-height:1;
-  letter-spacing:-0.04em;
-}
-.cell-stat-lbl{
-  font-size:10px;font-weight:600;color:var(--muted);
-  letter-spacing:0.16em;text-transform:uppercase;margin-top:6px;
-}
-.cell-stat-sub{
-  font-size:11px;color:var(--dim);margin-top:4px;font-weight:400;
-}
-/* accent bars */
-.cell-stat::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
-}
-.cs1{grid-column:2/3;grid-row:1/2}
-.cs1 .cell-stat-val{color:var(--v3)}
-.cs1::after{background:linear-gradient(90deg,var(--v),transparent)}
-.cs2{grid-column:3/4;grid-row:1/2}
-.cs2 .cell-stat-val{color:#c8a87a}
-.cs2::after{background:linear-gradient(90deg,#c8a87a,transparent)}
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+    }
 
-/* CHART CELL — full width */
-.cell-chart{
-  grid-column:1/-1;grid-row:2/3;
-  padding:20px 28px;
-  display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;
-  gap:12px;align-items:end;
-}
-.cell-chart-inner{display:contents}
-/* chart bars */
-.ch-col{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:default}
-.ch-bar-wrap{width:100%;display:flex;align-items:flex-end;height:80px}
-.ch-bar{
-  width:100%;border-radius:4px 4px 0 0;
-  min-height:4px;
-  transition:height 1s cubic-bezier(0.22,1,0.36,1);
-  position:relative;
-}
-.ch-bar::after{
-  content:attr(data-val);
-  position:absolute;top:-20px;left:50%;transform:translateX(-50%);
-  font-size:10px;font-weight:700;color:var(--bright);
-  opacity:0;transition:opacity .2s;white-space:nowrap;
-}
-.ch-col:hover .ch-bar::after{opacity:1}
-.ch-lbl{font-size:9px;font-weight:600;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;text-align:center}
-.chart-label{
-  position:absolute;top:16px;right:24px;
-  font-size:9px;font-weight:600;color:var(--dim);letter-spacing:0.16em;text-transform:uppercase;
-}
+    .nav-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--beige-muted);
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
 
-/* bottom stat row inside chart cell */
-.cell-chart-stats{
-  grid-column:1/-1;
-  display:flex;gap:0;
-  border-top:1px solid var(--border);
-  margin:8px -28px -20px;
-  padding:0;
-}
-.ccs{
-  flex:1;padding:12px 18px;border-right:1px solid var(--border);
-  display:flex;align-items:center;gap:10px;
-}
-.ccs:last-child{border-right:none}
-.ccs-val{font-size:13px;font-weight:800;color:var(--bright);letter-spacing:-0.02em}
-.ccs-lbl{font-size:9px;font-weight:600;color:var(--dim);letter-spacing:0.1em;text-transform:uppercase}
+    .nav-title span {
+      color: var(--beige-dim);
+      font-weight: 400;
+    }
 
-/* ══════════════════════════════════════
-   PROJECTS
-══════════════════════════════════════ */
-.proj-section{padding:20px 28px 80px}
-.proj-head{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:28px 0 20px;border-top:1px solid var(--border);
-}
-.proj-head-l{font-size:10px;font-weight:600;color:var(--dim);letter-spacing:0.2em;text-transform:uppercase}
-.proj-head-r{font-size:10px;font-weight:600;color:var(--dim);letter-spacing:0.14em}
+    /* ── HERO ── */
+    .hero {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 8rem 2.5rem 6rem;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
 
-.proj-grid{display:flex;flex-direction:column;gap:10px}
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-.proj-card{
-  background:var(--bg1);border:1px solid var(--border);border-radius:10px;
-  display:grid;grid-template-columns:80px 1fr auto;
-  gap:0;overflow:hidden;cursor:pointer;
-  transition:border-color .2s,background .2s;
-  position:relative;
-}
-.proj-card::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:0;
-  background:linear-gradient(180deg,var(--v2),var(--v));
-  transition:width .25s cubic-bezier(0.22,1,0.36,1);
-  border-radius:10px 0 0 10px;
-}
-.proj-card:hover{border-color:rgba(42,82,152,0.5);background:var(--bg2)}
-.proj-card:hover::before{width:3px}
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+    }
 
-.proj-num{
-  display:flex;align-items:center;justify-content:center;
-  border-right:1px solid var(--border);
-  font-size:11px;font-weight:800;color:var(--dim);
-  letter-spacing:0.1em;
-  background:var(--bg2);
-  transition:color .2s;
-}
-.proj-card:hover .proj-num{color:var(--v3)}
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 4.2rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.08;
+      margin-bottom: 1.5rem;
+    }
 
-.proj-body{padding:22px 24px}
-.proj-title{
-  font-size:17px;font-weight:700;color:var(--bright);
-  letter-spacing:-0.02em;margin-bottom:8px;line-height:1.2;
-  transition:color .2s;
-}
-.proj-card:hover .proj-title{color:var(--v3)}
-.proj-brief{
-  font-size:13px;color:var(--muted);line-height:1.65;
-  max-width:560px;margin-bottom:14px;
-}
-.proj-chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{
-  font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
-  padding:3px 9px;border-radius:3px;border:1px solid var(--border2);color:var(--muted);
-}
-.chip.v{color:var(--v3);border-color:rgba(212,184,150,0.3);background:var(--vdim)}
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
 
-.proj-right{
-  display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;
-  padding:22px 24px;border-left:1px solid var(--border);min-width:100px;
-}
-.proj-year{font-size:11px;font-weight:700;color:var(--dim);letter-spacing:0.1em}
-.proj-arrow{
-  font-family:var(--f);font-size:10px;font-weight:700;
-  letter-spacing:0.08em;text-transform:uppercase;
-  color:var(--dim);white-space:nowrap;
-  padding:6px 10px;border:1px solid var(--border2);border-radius:4px;
-  display:flex;align-items:center;gap:6px;
-  transition:border-color .2s,color .2s,background .2s;
-}
-.proj-card:hover .proj-arrow{
-  border-color:var(--v3);color:var(--v3);
-  background:var(--vdim);
-}
+    .hero-bio {
+      font-size: 1rem;
+      color: var(--beige-muted);
+      max-width: 480px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
 
-/* ══════════════════════════════════════
-   DETAIL PAGE
-══════════════════════════════════════ */
-#page-detail{padding-top:50px;animation:rise .22s ease}
-@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
 
-.det-hero{
-  padding:40px 32px 36px;border-bottom:1px solid var(--border);
-  background:var(--bg1);
-  display:grid;grid-template-columns:1fr 160px;gap:32px;align-items:start;
-}
-.det-crumb{
-  font-size:10px;font-weight:600;color:var(--dim);
-  letter-spacing:0.16em;text-transform:uppercase;
-  margin-bottom:16px;display:flex;align-items:center;gap:6px;
-}
-.det-crumb-cur{color:var(--v3)}
-.det-title{
-  font-size:clamp(24px,3.5vw,44px);font-weight:900;
-  letter-spacing:-0.03em;line-height:1.05;color:var(--bright);margin-bottom:14px;
-}
-.det-desc{font-size:14px;color:var(--muted);max-width:560px;line-height:1.75;margin-bottom:18px}
-.det-chips{display:flex;gap:6px;flex-wrap:wrap}
-.det-side{text-align:right;padding-top:4px}
-.det-yr{
-  font-size:56px;font-weight:900;letter-spacing:-0.04em;line-height:1;
-  background:linear-gradient(135deg,var(--v2),var(--v3));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  margin-bottom:4px;
-}
-.det-yr-lbl{font-size:9px;font-weight:700;color:var(--dim);letter-spacing:0.18em;text-transform:uppercase}
+    /* ── HERO STATS (replaces monogram) ── */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: minmax(70px, auto);
+      gap: 0.7rem;
+      align-self: center;
+    }
 
-.det-body{
-  padding:28px 32px 80px;
-  display:grid;grid-template-columns:1fr 1fr;gap:16px;
-}
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.65rem 1.5rem;
+      border-radius: var(--radius);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s, opacity 0.15s;
+      letter-spacing: 0.02em;
+    }
 
-/* ASSET PANEL */
-.ap{background:var(--bg1);border:1px solid var(--border);border-radius:10px;overflow:hidden}
-.ap.wide{grid-column:1/-1}
-.ap-head{
-  padding:12px 18px;border-bottom:1px solid var(--border);
-  background:var(--bg2);display:flex;align-items:center;gap:10px;
-}
-.ap-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.ap-lbl{font-size:9px;font-weight:700;color:var(--muted);letter-spacing:0.18em;text-transform:uppercase;flex:1}
-.ap-ct{font-size:9px;font-weight:600;color:var(--dim);letter-spacing:0.1em}
-.ap-body{padding:14px}
+    .btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.92;
+    }
 
-.pdf-list{display:flex;flex-direction:column;gap:8px}
-.pdf-row{
-  display:flex;align-items:center;gap:12px;padding:12px 14px;
-  border:1px solid var(--border);border-radius:6px;cursor:pointer;
-  transition:border-color .15s,background .15s;background:var(--bg2);
-}
-.pdf-row:hover{border-color:rgba(212,184,150,0.4);background:var(--bg3)}
-.pdf-ico{
-  width:30px;height:36px;border-radius:4px;
-  background:var(--bg3);border:1px solid var(--border2);
-  display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;
-}
-.pdf-info{flex:1;min-width:0}
-.pdf-name{font-size:12px;font-weight:600;color:var(--text);margin-bottom:2px;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pdf-sub{font-size:9px;font-weight:600;color:var(--dim);letter-spacing:0.1em;text-transform:uppercase}
-.pdf-act{font-size:9px;font-weight:700;color:var(--dim);letter-spacing:0.1em;text-transform:uppercase;
-  transition:color .15s;flex-shrink:0}
-.pdf-row:hover .pdf-act{color:var(--v3)}
+    .btn-gold {
+      background: var(--gold);
+      color: var(--navy-deep);
+    }
 
-.med-ph{
-  aspect-ratio:16/9;border:1px dashed var(--border2);border-radius:6px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:10px;cursor:pointer;transition:border-color .15s,background .15s;
-  background:var(--bg2);
-}
-.med-ph:hover{border-color:rgba(42,82,152,0.4);background:var(--bg3)}
-.med-icon{font-size:22px;opacity:0.25}
-.med-lbl{font-size:9px;font-weight:700;color:var(--dim);letter-spacing:0.18em;text-transform:uppercase}
-.med-sub{font-size:11px;color:var(--dim);text-align:center;line-height:1.6}
-.play-ring{
-  width:46px;height:46px;border-radius:50%;
-  border:1px solid var(--border2);
-  display:flex;align-items:center;justify-content:center;
-  font-size:15px;padding-left:2px;color:var(--muted);
-  transition:border-color .15s,color .15s,background .15s;
-}
-.med-ph:hover .play-ring{border-color:var(--v);color:var(--v3);background:var(--vdim)}
+    .btn-outline {
+      background: transparent;
+      color: var(--beige);
+      border: 1px solid var(--navy-border);
+    }
 
-/* ── RESPONSIVE ── */
-@media(max-width:900px){
-  .bento-wrap{grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto}
-  .cell-name{grid-column:1/-1;grid-row:1}
-  .cs1{grid-column:1/2;grid-row:2}
-  .cs2{grid-column:2/3;grid-row:2}
-  .cell-chart{grid-column:1/-1;grid-row:3}
-  .bar{padding:0 16px}
-  .bento-wrap,.proj-section{padding-left:14px;padding-right:14px}
-  .proj-card{grid-template-columns:52px 1fr auto}
-  .det-hero{grid-template-columns:1fr;padding:28px 16px}
-  .det-body{grid-template-columns:1fr;padding:20px 16px 60px}
-  .ap.wide{grid-column:auto}
-  .det-side{text-align:left}
-}
-@media(max-width:600px){
-  .bento-wrap{grid-template-columns:1fr}
-  .cs1,.cs2{grid-column:1/-1}
-  .cell-chart{display:none}
-  .proj-right{display:none}
-  .proj-card{grid-template-columns:52px 1fr}
-}
-</style>
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 5.5rem 2.5rem;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--navy-border);
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section-title {
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 3rem;
+      line-height: 1.15;
+    }
+
+    /* ── HERO MINI BIO ── */
+    .hero-mini-bio {
+      font-size: 0.82rem;
+      color: var(--beige-dim);
+      max-width: 480px;
+      line-height: 1.75;
+      margin-top: -1.25rem;
+      margin-bottom: 2.5rem;
+      border-left: 2px solid var(--navy-border);
+      padding-left: 0.9rem;
+    }
+
+    /* ── STAT CARDS (hero bento) ── */
+    .stat-card {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius);
+      padding: 0.6rem 0.9rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-2px);
+    }
+
+    .stat-card-body {
+      flex: 1;
+    }
+
+    .stat-card-footer {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 0.4rem;
+      padding-top: 0.35rem;
+      border-top: 1px solid var(--navy-border);
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: gap 0.15s;
+      user-select: none;
+    }
+
+    .stat-card-footer:hover {
+      gap: 8px;
+    }
+
+    .stat-card-footer svg {
+      transition: transform 0.25s;
+    }
+
+    .stat-card-certs.expanded .stat-card-footer svg {
+      transform: rotate(90deg);
+    }
+
+    .stat-card-timeline.expanded .stat-card-footer svg {
+      transform: rotate(90deg);
+    }
+
+    /* ── STAT NUMBER/LABEL ── */
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--beige-dim);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .project-card {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.25s, transform 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-3px);
+    }
+
+    .project-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.75rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+      opacity: 0.7;
+    }
+
+    .project-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+
+    .project-card p {
+      font-size: 0.875rem;
+      color: var(--beige-muted);
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 4px;
+      background: var(--navy-raised);
+      color: var(--beige-muted);
+      border: 1px solid var(--navy-border);
+      letter-spacing: 0.04em;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: gap 0.15s;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .project-link:hover {
+      gap: 10px;
+    }
+
+    /* ── EXPERIENCE TIMELINE (inside hero stat card) ── */
+    .stat-card-timeline {
+      cursor: default;
+      transition: border-color 0.2s, transform 0.2s, grid-column 0.01s;
+    }
+
+    .stat-card-timeline .timeline {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      margin-top: 0;
+      transition: max-height 0.35s ease, opacity 0.25s ease, margin-top 0.3s ease;
+    }
+
+    .stat-card-timeline.expanded {
+      grid-column: 1 / -1;
+      cursor: default;
+    }
+
+    .stat-card-timeline.expanded .timeline {
+      max-height: 600px;
+      opacity: 1;
+      margin-top: 0.9rem;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 1rem;
+      position: relative;
+      padding-bottom: 1.5rem;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 16px;
+      bottom: -4px;
+      width: 1px;
+      background: var(--navy-border);
+    }
+
+    .timeline-item:last-child::before {
+      display: none;
+    }
+
+    .timeline-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--navy-raised);
+      border: 2px solid var(--beige-dim);
+      flex-shrink: 0;
+      margin-top: 3px;
+      z-index: 1;
+    }
+
+    .timeline-dot.current {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .timeline-info {
+      background: var(--navy-raised);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius);
+      padding: 0.85rem 1.1rem;
+      flex: 1;
+      transition: border-color 0.2s;
+    }
+
+    .timeline-info:hover {
+      border-color: var(--gold-dim);
+    }
+
+    .timeline-role {
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: var(--beige);
+      margin-bottom: 2px;
+    }
+
+    .timeline-org {
+      font-size: 0.775rem;
+      color: var(--beige-dim);
+      margin-bottom: 4px;
+    }
+
+    .timeline-period {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.8rem;
+      color: var(--beige-muted);
+      line-height: 1.6;
+    }
+
+    /* ── CERTIFICATIONS (inside hero stat card) ── */
+    .stat-card-certs {
+      cursor: default;
+      transition: border-color 0.2s, transform 0.2s, grid-column 0.01s;
+    }
+
+    .stat-card-certs .cert-list {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      margin-top: 0;
+      transition: max-height 0.35s ease, opacity 0.25s ease, margin-top 0.3s ease;
+    }
+
+    .stat-card-certs.expanded {
+      grid-column: 1 / -1;
+      cursor: default;
+    }
+
+    .stat-card-certs.expanded .cert-list {
+      max-height: 600px;
+      opacity: 1;
+      margin-top: 0.9rem;
+    }
+
+    .cert-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .cert-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--navy-raised);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius);
+      padding: 0.85rem 1.1rem;
+      transition: border-color 0.2s, background 0.2s;
+      cursor: pointer;
+    }
+
+    .cert-item:hover {
+      border-color: var(--gold-dim);
+      background: #1a2d45;
+    }
+
+    .cert-item--progress {
+      opacity: 0.7;
+    }
+
+    .cert-item--progress:hover {
+      opacity: 1;
+    }
+
+    .cert-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .cert-dot.active {
+      background: #4ADE80;
+    }
+
+    .cert-dot.progress {
+      background: var(--gold);
+    }
+
+    .cert-info {
+      flex: 1;
+    }
+
+    .cert-name {
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: var(--beige);
+      margin-bottom: 2px;
+    }
+
+    .cert-issuer {
+      font-size: 0.775rem;
+      color: var(--beige-dim);
+    }
+
+    .cert-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 4px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .cert-badge.active {
+      background: rgba(74, 222, 128, 0.1);
+      color: #4ADE80;
+      border: 1px solid rgba(74, 222, 128, 0.25);
+    }
+
+    .cert-badge.progress {
+      background: var(--gold-pale);
+      color: var(--gold);
+      border: 1px solid var(--gold-dim);
+    }
+
+    /* ── PROJECT DETAIL VIEW ── */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .project-detail {
+      animation: fadeIn 0.35s ease forwards;
+    }
+
+    .project-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: none;
+      border: 1px solid var(--navy-border);
+      color: var(--beige-dim);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 0.45rem 1rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      margin-bottom: 2rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .project-back:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .project-detail-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-detail-header .project-num {
+      font-size: 2.5rem;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .project-detail-title {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      margin: 0;
+    }
+
+    .project-detail-desc {
+      font-size: 0.95rem;
+      color: var(--beige-muted);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      max-width: 680px;
+    }
+
+    /* ── MEDIA VIEWER ── */
+    .media-viewer {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .media-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--navy-border);
+      padding: 0 0.5rem;
+      overflow-x: auto;
+    }
+
+    .media-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.7rem 1rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--beige-dim);
+      border: none;
+      border-bottom: 2px solid transparent;
+      background: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      white-space: nowrap;
+      transition: color 0.15s, border-color 0.15s;
+      margin-bottom: -1px;
+    }
+
+    .media-tab:hover {
+      color: var(--beige);
+    }
+
+    .media-tab.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    .media-stage {
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .media-placeholder {
+      text-align: center;
+      color: var(--beige-dim);
+      font-size: 0.85rem;
+      line-height: 1.7;
+      padding: 3rem;
+    }
+
+    .media-placeholder code {
+      font-family: monospace;
+      background: var(--navy-raised);
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-size: 0.8rem;
+      color: var(--gold);
+    }
+
+    .media-frame {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      display: none;
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    .media-frame.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .media-frame iframe {
+      width: 100%;
+      height: 520px;
+      border: none;
+      display: block;
+    }
+
+    .media-frame img {
+      max-width: 100%;
+      max-height: 520px;
+      object-fit: contain;
+      display: block;
+      border-radius: 4px;
+    }
+
+    .media-frame video {
+      width: 100%;
+      max-height: 520px;
+      display: block;
+      border-radius: 4px;
+      background: #000;
+    }
+
+    /* ── CONTACT ── */
+    .contact-box {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius-lg);
+      padding: 4rem 3.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-box::before {
+      content: 'MM';
+      font-family: 'Playfair Display', serif;
+      font-size: 10rem;
+      font-weight: 700;
+      color: var(--navy-raised);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      user-select: none;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .contact-box>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-box h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+
+    .contact-box p {
+      color: var(--beige-muted);
+      font-size: 0.975rem;
+      max-width: 440px;
+      margin: 0 auto 2.25rem;
+      line-height: 1.75;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.775rem;
+      color: var(--beige-dim);
+      border-top: 1px solid var(--navy-border);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .contact-box {
+        padding: 2.5rem 1.5rem;
+      }
+    }
+
+    /* ── CERT LIGHTBOX ── */
+    .cert-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 18, 30, 0.88);
+      backdrop-filter: blur(8px);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .cert-lightbox.open {
+      display: flex;
+      opacity: 0;
+    }
+
+    .cert-lightbox.visible {
+      opacity: 1;
+    }
+
+    .cert-lightbox-panel {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 720px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: translateY(16px);
+      transition: transform 0.28s ease;
+    }
+
+    .cert-lightbox.visible .cert-lightbox-panel {
+      transform: translateY(0);
+    }
+
+    .cert-lightbox-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--navy-border);
+      flex-shrink: 0;
+    }
+
+    .cert-lightbox-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 3px;
+    }
+
+    .cert-lightbox-issuer {
+      font-size: 0.75rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .cert-lightbox-close {
+      background: none;
+      border: 1px solid var(--navy-border);
+      border-radius: 6px;
+      color: var(--beige-dim);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .cert-lightbox-close:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .cert-lightbox-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .cert-lightbox-body img {
+      width: 100%;
+      max-width: 580px;
+      border-radius: var(--radius);
+      border: 1px solid var(--navy-border);
+      display: block;
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    .lb-placeholder {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--beige-dim);
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+
+    .lb-placeholder svg {
+      margin: 0 auto 1rem;
+      display: block;
+      opacity: 0.25;
+    }
+
+    .lb-placeholder code {
+      font-family: monospace;
+      background: var(--navy-raised);
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 0.8rem;
+      color: var(--gold);
+    }
+
+    .cert-lightbox-nav {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 0.9rem 1.5rem;
+      border-top: 1px solid var(--navy-border);
+      flex-shrink: 0;
+    }
+
+    .cert-lightbox-nav.visible {
+      display: flex;
+    }
+
+    .lb-arrow {
+      background: none;
+      border: 1px solid var(--navy-border);
+      border-radius: 6px;
+      color: var(--beige-dim);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .lb-arrow:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .lb-arrow:disabled {
+      opacity: 0.3;
+      cursor: default;
+    }
+
+    .lb-counter {
+      font-size: 0.75rem;
+      color: var(--beige-dim);
+      font-weight: 600;
+      min-width: 50px;
+      text-align: center;
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- TOPBAR -->
-<header class="bar">
-  <span class="bar-logo">MM</span>
-  <span class="bar-mid">BI Engineer</span>
-  <div class="bar-r">
-    <button class="bar-back" id="back-btn" onclick="showPage('home')">
-      <svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5"/></svg>
-      Overview
-    </button>
-    <span class="bar-pill" id="bar-pill">Portfolio</span>
-  </div>
-</header>
+  <nav>
+    <a class="nav-logo" href="#" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;">
+      <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <rect width="32" height="32" rx="7" fill="#C9A96E" />
+        <text x="16" y="22" text-anchor="middle" font-family="Playfair Display, serif" font-size="14" font-weight="700"
+          fill="#0D1B2A">MM</text>
+      </svg>
+    </a>
+    <div class="nav-title">Mahmoud Morshedy <span>— Portfolio</span></div>
+    <div></div>
+  </nav>
 
-<!-- ══════════════════════ HOME ══════════════════════ -->
-<div class="page active" id="page-home">
-
-  <!-- BENTO GRID -->
-  <div class="bento-wrap">
-
-    <!-- NAME -->
-    <div class="cell cell-name">
-      <div class="cell-name-tag">BI Engineer · PwC ETIC · Cairo, Egypt </div>
-      <h1>Mahmoud<br><em>Morshedy</em></h1>
-      <p class="cell-tagline">turning data into decisions</p>
-      <div class="cell-role">
-        Power BI &nbsp;·&nbsp; DAX &nbsp;·&nbsp; SQL &nbsp;·&nbsp; Azure &nbsp;·&nbsp; Alteryx
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div>
+      <div class="hero-eyebrow">BI Engineer · Cairo, Egypt</div>
+      <h1>Turning data<br />into <em>decisions.</em></h1>
+      <p class="hero-bio">
+        I build Power BI dashboards and analytics systems
+        that give teams clarity. Currently working as an IT operations - BI Engineer at PwC ETIC Middle East.
+      </p>
+      <p class="hero-mini-bio">
+        IT Operations Associate & BI Developer at PwC ETIC with 3 years of experience, bridging IT operations and
+        business intelligence.
+        B.Sc. in Information Engineering & Technology from the German University in Cairo (2023).
+        I specialize in scalable BI solutions from data modelling and DAX development to interactive dashboards and
+        stakeholder adoption.
+      </p>
+      <div class="hero-cta">
+        <button onclick="showSection('projects')" class="btn btn-gold">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+          View my work
+        </button>
+        <button onclick="showSection('contact')" class="btn btn-outline">Get in touch</button>
       </div>
     </div>
-
-    <!-- STAT 1 -->
-    <div class="cell cell-stat cs1">
-      <div>
-        <div class="cell-stat-val">3</div>
-        <div class="cell-stat-lbl">Years Exp.</div>
-        <div class="cell-stat-sub">@ PwC ETIC</div>
+    <div class="hero-stats">
+      <div class="stat-card stat-card-timeline" id="expCard">
+        <div class="stat-card-body">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Years of experience</div>
+        </div>
+        <div class="stat-card-footer" id="expToggle">
+          View
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </div>
+        <div class="timeline" id="expTimeline">
+          <div class="timeline-item">
+            <div class="timeline-dot current"></div>
+            <div class="timeline-info">
+              <div class="timeline-role">BI Engineer &amp; IT Operations Analyst Associate</div>
+              <div class="timeline-org">PwC ETIC Middle East · Cairo, Egypt</div>
+              <div class="timeline-period">Feb 2024 — Present</div>
+              <div class="timeline-desc">Bridging IT operations and business intelligence — building Power BI
+                dashboards, owning the BI lifecycle from data modelling to stakeholder adoption, and self-initiating
+                analytics projects.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-info">
+              <div class="timeline-role">IS&amp;T Support Engineer</div>
+              <div class="timeline-org">PGESCO</div>
+              <div class="timeline-period">Oct 2023 — Feb 2024</div>
+              <div class="timeline-desc">Provided L1/L2 technical support, Microsoft 365 administration, and IT asset
+                management while maintaining SLA compliance. Enhanced IT operations through effective documentation,
+                knowledge management, and process standardization.</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div style="font-size:9px;font-weight:700;color:var(--dim);letter-spacing:0.14em;text-transform:uppercase">
-        GUC · 2023
+      <div class="stat-card stat-card-certs" id="certsCard">
+        <div class="stat-card-body">
+          <div class="stat-number">5+</div>
+          <div class="stat-label">Certifications earned</div>
+        </div>
+        <div class="stat-card-footer" id="certsToggle">
+          View
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </div>
+        <div class="cert-list" id="certList">
+          <div class="cert-item cert-item--active" onclick="openCertViewer('itil')">
+            <div class="cert-dot active"></div>
+            <div class="cert-info">
+              <div class="cert-name">ITIL 5 Foundation</div>
+              <div class="cert-issuer">PeopleCert</div>
+            </div>
+            <span class="cert-badge active">Active</span>
+          </div>
+          <div class="cert-item" onclick="openCertViewer('pl300')">
+            <div class="cert-dot active"></div>
+            <div class="cert-info">
+              <div class="cert-name">Microsoft PL-300 — Power BI Data Analyst</div>
+              <div class="cert-issuer">Microsoft</div>
+            </div>
+            <span class="cert-badge active">Active</span>
+          </div>
+          <div class="cert-item" onclick="openCertViewer('dp900')">
+            <div class="cert-dot active"></div>
+            <div class="cert-info">
+              <div class="cert-name">Microsoft DP-900 — Azure Data Fundamentals</div>
+              <div class="cert-issuer">Microsoft</div>
+            </div>
+            <span class="cert-badge active">Active</span>
+          </div>
+          <div class="cert-item" onclick="openCertViewer('az900')">
+            <div class="cert-dot active"></div>
+            <div class="cert-info">
+              <div class="cert-name">Microsoft AZ-900 — Azure Fundamentals</div>
+              <div class="cert-issuer">Microsoft</div>
+            </div>
+            <span class="cert-badge active">Active</span>
+          </div>
+          <div class="cert-item" onclick="openCertViewer('alteryx')">
+            <div class="cert-dot active"></div>
+            <div class="cert-info">
+              <div class="cert-name">Alteryx Designer Core &amp; Advanced</div>
+              <div class="cert-issuer">Alteryx</div>
+            </div>
+            <span class="cert-badge active">Active</span>
+          </div>
+          <div class="cert-item" onclick="openCertViewer('fortinet')">
+            <div class="cert-dot active"></div>
+            <div class="cert-info">
+              <div class="cert-name">Fortinet NSE 1, 2 &amp; 3</div>
+              <div class="cert-issuer">Fortinet</div>
+            </div>
+            <span class="cert-badge active">Active</span>
+          </div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-body">
+          <div class="stat-number">PwC</div>
+          <div class="stat-label">ETIC</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-body">
+          <div class="stat-number">GUC</div>
+          <div class="stat-label">B.Sc. IET, 2023</div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- STAT 2 -->
-    <div class="cell cell-stat cs2" onclick="showPage('certs')" style="cursor:pointer">
-      <div>
-        <div class="cell-stat-val" style="color:#d4b896">7</div>
-        <div class="cell-stat-lbl">Certifications</div>
-      </div>
-      <div style="font-size:9px;font-weight:700;color:var(--v3);letter-spacing:0.14em;text-transform:uppercase">
-        View All &nbsp;→
-      </div>
-    </div>
-
-    <!-- SKILL CHART CELL -->
-    <div class="cell cell-chart" style="position:relative">
-      <span class="chart-label">Proficiency Index</span>
-      <div class="ch-col">
-        <div class="ch-bar-wrap"><div class="ch-bar" data-h="95" data-val="Power BI · 95" style="background:linear-gradient(180deg,var(--v2),var(--v));height:0"></div></div>
-        <div class="ch-lbl">Power BI</div>
-      </div>
-      <div class="ch-col">
-        <div class="ch-bar-wrap"><div class="ch-bar" data-h="90" data-val="DAX · 90" style="background:linear-gradient(180deg,var(--v2),var(--v));height:0"></div></div>
-        <div class="ch-lbl">DAX</div>
-      </div>
-      <div class="ch-col">
-        <div class="ch-bar-wrap"><div class="ch-bar" data-h="82" data-val="SQL · 82" style="background:linear-gradient(180deg,#c8a87a,#a07a50);height:0"></div></div>
-        <div class="ch-lbl">SQL</div>
-      </div>
-      <div class="ch-col">
-        <div class="ch-bar-wrap"><div class="ch-bar" data-h="78" data-val="Alteryx · 78" style="background:linear-gradient(180deg,#c8a87a,#a07a50);height:0"></div></div>
-        <div class="ch-lbl">Alteryx</div>
-      </div>
-      <div class="ch-col">
-        <div class="ch-bar-wrap"><div class="ch-bar" data-h="72" data-val="Azure · 72" style="background:linear-gradient(180deg,#4a78c8,#2a5298);height:0"></div></div>
-        <div class="ch-lbl">Azure</div>
-      </div>
-      <div class="ch-col">
-        <div class="ch-bar-wrap"><div class="ch-bar" data-h="65" data-val="Python · 65" style="background:linear-gradient(180deg,#4a78c8,#2a5298);height:0"></div></div>
-        <div class="ch-lbl">Python</div>
-      </div>
-    </div>
-
-  </div><!-- /bento -->
+  <hr class="divider" id="divider-projects" style="display:none;" />
 
   <!-- PROJECTS -->
-  <div class="proj-section">
-    <div class="proj-head">
-      <span class="proj-head-l">Selected Work</span>
-      <span class="proj-head-r">4 Projects</span>
+  <section class="section" id="projects" style="display:none;">
+
+    <!-- PROJECT LIST VIEW -->
+    <div id="projects-list">
+      <div class="section-eyebrow">Selected work</div>
+      <h2 class="section-title">Featured projects</h2>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-num">01</div>
+          <h3>Assets Monitoring System</h3>
+          <p>
+            A Power BI dashboard connected to SharePoint Online tracking hardware lifecycle,
+            asset allocation, and maintenance across the organization. Self-initiated at PwC ETIC.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Power BI</span>
+            <span class="tag">DAX</span>
+            <span class="tag">SharePoint</span>
+            <span class="tag">Power Query</span>
+          </div>
+          <button onclick="showProject('p1')" class="project-link">
+            View Project
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">02</div>
+          <h3>Service Desk Analytics Dashboard</h3>
+          <p>
+            End-to-end Power BI solution analyzing IT service desk tickets from Atlassian JIRA,
+            surfacing SLA compliance, ticket trends, and team performance KPIs.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Power BI</span>
+            <span class="tag">DAX</span>
+            <span class="tag">KPI Design</span>
+            <span class="tag">JIRA</span>
+            <span class="tag">Power Query</span>
+          </div>
+          <button onclick="showProject('p2')" class="project-link">
+            View Project
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+      </div>
     </div>
-    <div class="proj-grid">
 
-      <div class="proj-card" onclick="showProject(0)" onclick="showProject(0)">
-        <div class="proj-num">01</div>
-        <div class="proj-body">
-          <div class="proj-title">Assets Monitoring System</div>
-          <div class="proj-brief">Real-time asset lifecycle tracking from procurement to decommission — surfacing aging inventory, underutilised assets, and maintenance SLAs in one view.</div>
-          <div class="proj-chips">
-            <span class="chip v">Power BI</span><span class="chip">DAX</span>
-            <span class="chip">Power Query</span><span class="chip">Sharepoint Online Lists</span>
+    <!-- PROJECT DETAIL: Assets Monitoring -->
+    <div id="project-p1" class="project-detail" style="display:none;">
+      <button class="project-back" onclick="hideProject('p1')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+        Back to projects
+      </button>
+      <div class="project-detail-header">
+        <span class="project-num">01</span>
+        <div>
+          <h2 class="project-detail-title">Assets Monitoring System</h2>
+          <div class="project-tags" style="margin-top:0.5rem;">
+            <span class="tag">Power BI</span>
+            <span class="tag">DAX</span>
+            <span class="tag">SharePoint</span>
+            <span class="tag">Power Query</span>
           </div>
         </div>
-        <div class="proj-right">
-          <span class="proj-year">2024</span>
-          <div class="proj-arrow">View Project &nbsp;→</div>
-        </div>
       </div>
-
-      <div class="proj-card" onclick="showProject(1)" onclick="showProject(0)">
-        <div class="proj-num">02</div>
-        <div class="proj-body">
-          <div class="proj-title">Service Desk Analytics</div>
-          <div class="proj-brief">End-to-end analytics covering ticket volumes, resolution times, SLA compliance, and agent productivity — enabling data-driven shift planning.</div>
-          <div class="proj-chips">
-            <span class="chip v">Power BI</span><span class="chip">DAX</span>
-            <span class="chip">Power Query</span><span class="chip">JIRA</span>
-          </div>
-        </div>
-        <div class="proj-right">
-          <span class="proj-year">2024</span>
-          <div class="proj-arrow">View Project &nbsp;→</div>
-        </div>
-      </div>
-
-      <div class="proj-card" onclick="showProject(2)" onclick="showProject(0)">
-        <div class="proj-num">03</div>
-        <div class="proj-body">
-          <div class="proj-title">Netflix Analytics</div>
-          <div class="proj-brief">Replace with your actual description — what problem it solved, what data it exposed, and what decision it enabled.</div>
-          <div class="proj-chips">
-            <span class="chip v">Power BI</span><span class="chip">DAX</span>
-            <span class="chip">Power Query</span>
-          </div>
-        </div>
-        <div class="proj-right">
-          <span class="proj-year">2025</span>
-          <div class="proj-arrow">View Project &nbsp;→</div>
-        </div>
-      </div>
-
-      <div class="proj-card" onclick="showProject(3)" onclick="showProject(0)">
-        <div class="proj-num">04</div>
-        <div class="proj-body">
-          <div class="proj-title">Project Title Four</div>
-          <div class="proj-brief">Replace with your actual description — what problem it solved, what data it exposed, and what decision it enabled.</div>
-          <div class="proj-chips">
-            <span class="chip v">Alteryx</span><span class="chip">Power BI</span>
-            <span class="chip">Your Domain</span>
-          </div>
-        </div>
-        <div class="proj-right">
-          <span class="proj-year">2025</span>
-          <div class="proj-arrow">View Project &nbsp;→</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-</div><!-- /home -->
-
-<!-- ══════════════════════ DETAIL ══════════════════════ -->
-<div class="page" id="page-detail">
-
-  <div class="det-hero">
-    <div>
-      <div class="det-crumb">
-        Overview <span style="color:var(--border2)">/</span>
-        <span class="det-crumb-cur" id="det-domain">Project</span>
-      </div>
-      <h2 class="det-title" id="det-title">—</h2>
-      <p class="det-desc" id="det-desc">—</p>
-      <div class="det-chips" id="det-chips"></div>
-    </div>
-    <div class="det-side">
-      <div class="det-yr" id="det-year">—</div>
-      <div class="det-yr-lbl">Year</div>
-    </div>
-  </div>
-
-  <div class="det-body">
-
-    <div class="ap">
-      <div class="ap-head">
-        <div class="ap-dot" style="background:#c8a87a"></div>
-        <div class="ap-lbl">Documents</div>
-        <div class="ap-ct">3 PDFs</div>
-      </div>
-      <div class="ap-body">
-        <div class="pdf-list">
-          <div class="pdf-row" onclick="alert('Link your PDF here')">
-            <div class="pdf-ico">📄</div>
-            <div class="pdf-info">
-              <div class="pdf-name" id="pdf1">Project Brief.pdf</div>
-              <div class="pdf-sub">PDF Document</div>
-            </div>
-            <div class="pdf-act">View Document &nbsp;→</div>
-          </div>
-          <div class="pdf-row" onclick="alert('Link your PDF here')">
-            <div class="pdf-ico">📄</div>
-            <div class="pdf-info">
-              <div class="pdf-name" id="pdf2">Technical Documentation.pdf</div>
-              <div class="pdf-sub">PDF Document</div>
-            </div>
-            <div class="pdf-act">View Document &nbsp;→</div>
-          </div>
-          <div class="pdf-row" onclick="alert('Link your PDF here')">
-            <div class="pdf-ico">📄</div>
-            <div class="pdf-info">
-              <div class="pdf-name" id="pdf3">Results & Impact.pdf</div>
-              <div class="pdf-sub">PDF Document</div>
-            </div>
-            <div class="pdf-act">View Document &nbsp;→</div>
+      <p class="project-detail-desc">
+        A Power BI dashboard connected to SharePoint Online tracking hardware lifecycle,
+        asset allocation, and maintenance across the organization. Self-initiated at PwC ETIC.
+      </p>
+      <!-- MEDIA VIEWER -->
+      <div class="media-viewer">
+        <div class="media-tabs" id="p1-tabs"></div>
+        <div class="media-stage" id="p1-stage">
+          <div class="media-placeholder">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              opacity="0.3">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <polyline points="21 15 16 10 5 21" />
+            </svg>
+            <p>No media files added yet.<br />Replace the <code>p1Files</code> array in the script with your PDF, image,
+              or video paths.</p>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="ap">
-      <div class="ap-head">
-        <div class="ap-dot" style="background:var(--v3)"></div>
-        <div class="ap-lbl">Dashboard Preview</div>
-        <div class="ap-ct">1 Image</div>
+    <!-- PROJECT DETAIL: Service Desk -->
+    <div id="project-p2" class="project-detail" style="display:none;">
+      <button class="project-back" onclick="hideProject('p2')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+        Back to projects
+      </button>
+      <div class="project-detail-header">
+        <span class="project-num">02</span>
+        <div>
+          <h2 class="project-detail-title">Service Desk Analytics Dashboard</h2>
+          <div class="project-tags" style="margin-top:0.5rem;">
+            <span class="tag">Power BI</span>
+            <span class="tag">DAX</span>
+            <span class="tag">KPI Design</span>
+            <span class="tag">JIRA</span>
+            <span class="tag">Power Query</span>
+          </div>
+        </div>
       </div>
-      <div class="ap-body">
-        <div class="med-ph" onclick="alert('Link your image here')">
-          <div class="med-icon">🖼</div>
-          <div class="med-lbl">Screenshot</div>
-          <div class="med-sub">Upload your Power BI<br>dashboard screenshot</div>
+      <p class="project-detail-desc">
+        End-to-end Power BI solution analyzing IT service desk tickets from Atlassian JIRA,
+        surfacing SLA compliance, ticket trends, and team performance KPIs.
+      </p>
+      <!-- MEDIA VIEWER -->
+      <div class="media-viewer">
+        <div class="media-tabs" id="p2-tabs"></div>
+        <div class="media-stage" id="p2-stage">
+          <div class="media-placeholder">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              opacity="0.3">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <polyline points="21 15 16 10 5 21" />
+            </svg>
+            <p>No media files added yet.<br />Replace the <code>p2Files</code> array in the script with your PDF, image,
+              or video paths.</p>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="ap wide">
-      <div class="ap-head">
-        <div class="ap-dot" style="background:#c47a7a"></div>
-        <div class="ap-lbl">Walkthrough Video</div>
-        <div class="ap-ct">1 Video</div>
-      </div>
-      <div class="ap-body">
-        <div class="med-ph" style="aspect-ratio:21/7" onclick="alert('Embed your video here')">
-          <div class="play-ring">▶</div>
-          <div class="med-lbl">Play Walkthrough</div>
-          <div class="med-sub">Embed an MP4 or YouTube / Vimeo link</div>
-        </div>
+  </section>
+
+  <hr class="divider" id="divider-contact" style="display:none;" />
+
+  <!-- CONTACT -->
+  <section class="section" id="contact" style="display:none;">
+    <div class="contact-box">
+      <h2 class="section-title" style="margin-bottom:0.75rem">Let's connect</h2>
+      <p>Open to BI Engineer and Data Analyst roles</p>
+      <div class="contact-links">
+        <!-- CUSTOMIZE: replace YOUR-LINKEDIN-HANDLE and YOUR-GITHUB-USERNAME -->
+        <a href="https://linkedin.com/in/morshedy" class="btn btn-gold" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+            <rect x="2" y="9" width="4" height="12" />
+            <circle cx="4" cy="4" r="2" />
+          </svg>
+          LinkedIn
+        </a>
+        <!-- CUSTOMIZE: replace YOUR-EMAIL@example.com -->
+        <a href="mailto:morshedy3008@gmail.com" class="btn btn-outline">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          Email me
+        </a>
+        <!-- CUSTOMIZE: replace YOUR-PHONE-NUMBER with your number in international format, no + or spaces, e.g. 201012345678 -->
+        <a href="https://wa.me/+201098255187" class="btn btn-outline" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+          </svg>
+          WhatsApp
+        </a>
       </div>
     </div>
+  </section>
 
-  </div>
-</div><!-- /detail -->
-
-
-<!-- ══════════════════════ CERTS LIST PAGE ══════════════════════ -->
-<div class="page" id="page-certs">
-  <div class="det-hero" style="display:block">
-    <div class="det-crumb">
-      <span style="cursor:pointer;color:var(--v3)" onclick="showPage('home')">Overview</span>
-      <span style="color:var(--border2)">/</span>
-      <span class="det-crumb-cur">Certifications</span>
-    </div>
-    <h2 class="det-title" style="margin-top:12px">My Certifications</h2>
-    <p class="det-desc">Click any certification to view the credential document or badge.</p>
-  </div>
-
-  <div class="proj-section" style="padding-top:8px">
-    <div class="proj-grid">
-
-      <div class="proj-card" onclick="showCertFile(0)">
-        <div class="proj-num" style="color:var(--v3)">01</div>
-        <div class="proj-body">
-          <div class="proj-title">Microsoft PL-300</div>
-          <div class="proj-brief">Power BI Data Analyst Associate — data preparation, modelling, visualisation, and deployment using Power BI.</div>
-          <div class="proj-chips">
-            <span class="chip v">Microsoft</span><span class="chip">Power BI</span><span class="chip">Data Analytics</span>
-          </div>
+  <!-- CERT LIGHTBOX -->
+  <div id="certLightbox" class="cert-lightbox" onclick="closeCertViewer(event)">
+    <div class="cert-lightbox-panel">
+      <div class="cert-lightbox-header">
+        <div>
+          <div class="cert-lightbox-title" id="lbTitle"></div>
+          <div class="cert-lightbox-issuer" id="lbIssuer"></div>
         </div>
-        <div class="proj-right">
-          <span class="proj-year">2023</span>
-          <div class="proj-arrow">View Certificate &nbsp;→</div>
-        </div>
+        <button class="cert-lightbox-close" onclick="closeCertViewer()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
       </div>
-
-      <div class="proj-card" onclick="showCertFile(1)">
-        <div class="proj-num" style="color:var(--v3)">02</div>
-        <div class="proj-body">
-          <div class="proj-title">Microsoft DP-900</div>
-          <div class="proj-brief">Azure Data Fundamentals — core data concepts and Microsoft Azure data services.</div>
-          <div class="proj-chips">
-            <span class="chip v">Microsoft</span><span class="chip">Azure</span><span class="chip">Data Fundamentals</span>
-          </div>
-        </div>
-        <div class="proj-right">
-          <span class="proj-year">2023</span>
-          <div class="proj-arrow">View Certificate &nbsp;→</div>
-        </div>
-      </div>
-
-      <div class="proj-card" onclick="showCertFile(2)">
-        <div class="proj-num" style="color:var(--v3)">03</div>
-        <div class="proj-body">
-          <div class="proj-title">Microsoft AZ-900</div>
-          <div class="proj-brief">Azure Fundamentals — cloud concepts, Azure architecture, security, and governance.</div>
-          <div class="proj-chips">
-            <span class="chip v">Microsoft</span><span class="chip">Azure</span><span class="chip">Cloud</span>
-          </div>
-        </div>
-        <div class="proj-right">
-          <span class="proj-year">2023</span>
-          <div class="proj-arrow">View Certificate &nbsp;→</div>
-        </div>
-      </div>
-
-      <div class="proj-card" onclick="showCertFile(3)">
-        <div class="proj-num" style="color:var(--v3)">04</div>
-        <div class="proj-body">
-          <div class="proj-title">Alteryx Designer Core</div>
-          <div class="proj-brief">Proficiency in data blending, preparation, and analytic workflow automation in Alteryx Designer.</div>
-          <div class="proj-chips">
-            <span class="chip v">Alteryx</span><span class="chip">Data Prep</span><span class="chip">ETL</span>
-          </div>
-        </div>
-        <div class="proj-right">
-          <span class="proj-year">2024</span>
-          <div class="proj-arrow">View Certificate &nbsp;→</div>
-        </div>
-      </div>
-
-      <div class="proj-card" onclick="showCertFile(4)">
-        <div class="proj-num" style="color:var(--v3)">05</div>
-        <div class="proj-body">
-          <div class="proj-title">Alteryx Designer Advanced</div>
-          <div class="proj-brief">Spatial analysis, predictive modelling, iterative macros, and complex workflow optimisation.</div>
-          <div class="proj-chips">
-            <span class="chip v">Alteryx</span><span class="chip">Advanced Analytics</span><span class="chip">Macros</span>
-          </div>
-        </div>
-        <div class="proj-right">
-          <span class="proj-year">2024</span>
-          <div class="proj-arrow">View Certificate &nbsp;→</div>
-        </div>
-      </div>
-
-      <div class="proj-card" onclick="showCertFile(5)">
-        <div class="proj-num" style="color:var(--v3)">06</div>
-        <div class="proj-body">
-          <div class="proj-title">Fortinet NSE 1 / 2 / 3</div>
-          <div class="proj-brief">Network Security Expert levels 1–3 — cybersecurity awareness, threat landscape, and Fortinet fundamentals.</div>
-          <div class="proj-chips">
-            <span class="chip v">Fortinet</span><span class="chip">Cybersecurity</span><span class="chip">Networking</span>
-          </div>
-        </div>
-        <div class="proj-right">
-          <span class="proj-year">2023</span>
-          <div class="proj-arrow">View Certificate &nbsp;→</div>
-        </div>
-      </div>
-
-      <div class="proj-card" onclick="showCertFile(6)" style="opacity:0.72">
-        <div class="proj-num" style="color:var(--dim)">07</div>
-        <div class="proj-body">
-          <div class="proj-title" style="color:var(--muted)">Microsoft DP-600
-            <span style="font-size:9px;font-weight:700;color:var(--dim);letter-spacing:0.1em;margin-left:8px;border:1px solid var(--dim);padding:2px 7px;border-radius:2px">IN PROGRESS</span>
-          </div>
-          <div class="proj-brief">Fabric Analytics Engineer Associate — Microsoft Fabric, lakehouses, pipelines, and semantic models.</div>
-          <div class="proj-chips">
-            <span class="chip">Microsoft</span><span class="chip">Fabric</span><span class="chip">Analytics Engineering</span>
-          </div>
-        </div>
-        <div class="proj-right">
-          <span class="proj-year">2025</span>
-          <div class="proj-arrow" style="border-style:dashed">—</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div><!-- /certs -->
-
-<!-- ══════════════════════ CERT FILE VIEWER ══════════════════════ -->
-<div class="page" id="page-certview">
-  <div class="det-hero" style="display:block">
-    <div class="det-crumb">
-      <span style="cursor:pointer;color:var(--v3)" onclick="showPage('home')">Overview</span>
-      <span style="color:var(--border2)">/</span>
-      <span style="cursor:pointer;color:var(--v3)" onclick="showPage('certs')">Certifications</span>
-      <span style="color:var(--border2)">/</span>
-      <span class="det-crumb-cur" id="cv-title-crumb">—</span>
-    </div>
-    <h2 class="det-title" id="cv-title" style="margin-top:12px">—</h2>
-    <p class="det-desc" id="cv-desc">—</p>
-  </div>
-
-  <div style="padding:28px 32px 80px">
-    <!-- File viewer area -->
-    <div class="ap" style="max-width:860px">
-      <div class="ap-head">
-        <div class="ap-dot" style="background:var(--v3)"></div>
-        <div class="ap-lbl" id="cv-file-label">Certificate / Badge</div>
-        <div class="ap-ct" id="cv-file-type">PDF or Image</div>
-      </div>
-      <div class="ap-body" style="padding:20px">
-
-        <!-- PDF embed -->
-        <div id="cv-pdf-wrap" style="display:none">
-          <iframe id="cv-pdf" src="" style="width:100%;height:600px;border:1px solid var(--border);border-radius:6px;background:var(--bg2)"></iframe>
-        </div>
-
-        <!-- Image embed -->
-        <div id="cv-img-wrap" style="display:none;text-align:center">
-          <img id="cv-img" src="" alt="Certificate" style="max-width:100%;border-radius:6px;border:1px solid var(--border)"/>
-        </div>
-
-        <!-- Placeholder (no file linked yet) -->
-        <div id="cv-placeholder" class="med-ph" style="aspect-ratio:4/3" onclick="alert('Replace the file path in the certs data array in the script')">
-          <div class="med-icon">🎖</div>
-          <div class="med-lbl">Certificate File</div>
-          <div class="med-sub" id="cv-placeholder-hint">Link your PDF or image file path<br>in the script's certs array</div>
-        </div>
-
+      <div class="cert-lightbox-body" id="lbBody"></div>
+      <div class="cert-lightbox-nav" id="lbNav">
+        <button class="lb-arrow" id="lbPrev" onclick="lbNavigate(-1)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <span class="lb-counter" id="lbCounter"></span>
+        <button class="lb-arrow" id="lbNext" onclick="lbNavigate(1)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </button>
       </div>
     </div>
   </div>
-</div><!-- /certview -->
 
-<script>
-const projects=[
-  {domain:"IT Operations",title:"IT Hardware Monitoring System",
-   desc:"Real-time asset lifecycle tracking from procurement to decommission — surfacing aging inventory, underutilised assets, and maintenance SLAs in a single view.",
-   chips:[{l:"Power BI",v:true},{l:"DAX"},{l:"Power Query"},{l:"IT Operations"}],
-   year:"2024",pdfs:["Asset Inventory Report.pdf","DAX Measures Reference.pdf","Executive Summary.pdf"]},
-  {domain:"Service Operations",title:"Service Desk Analytics Dashboard",
-   desc:"End-to-end analytics covering ticket volumes, resolution times, SLA compliance, and agent productivity — enabling data-driven shift planning.",
-   chips:[{l:"Power BI",v:true},{l:"SQL"},{l:"ITSM"},{l:"ITIL"}],
-   year:"2024",pdfs:["Service Desk Brief.pdf","SLA Analysis Report.pdf","Implementation Guide.pdf"]},
-  {domain:"Your Domain",title:"Project Title Three",
-   desc:"Replace with your actual description — what problem it solved, what data it exposed, and what decision it enabled.",
-   chips:[{l:"Power BI",v:true},{l:"Azure"}],
-   year:"2025",pdfs:["Project Brief.pdf","Technical Documentation.pdf","Results & Impact.pdf"]},
-  {domain:"Your Domain",title:"Project Title Four",
-   desc:"Replace with your actual description — what problem it solved, what data it exposed, and what decision it enabled.",
-   chips:[{l:"Alteryx",v:true},{l:"Power BI"}],
-   year:"2025",pdfs:["Project Brief.pdf","Technical Documentation.pdf","Results & Impact.pdf"]},
-];
+  <footer>
+    <p>© July 2026 Mahmoud Morshedy · Built with HTML, CSS &amp; GitHub Pages</p>
+  </footer>
 
-const certs=[
-  {title:"Microsoft PL-300",desc:"Power BI Data Analyst Associate",file:"",type:"pdf"},
-  {title:"Microsoft DP-900",desc:"Azure Data Fundamentals",file:"",type:"pdf"},
-  {title:"Microsoft AZ-900",desc:"Azure Fundamentals",file:"",type:"pdf"},
-  {title:"Alteryx Designer Core",desc:"Designer Core Certification",file:"",type:"pdf"},
-  {title:"Alteryx Designer Advanced",desc:"Designer Advanced Certification",file:"",type:"pdf"},
-  {title:"Fortinet NSE 1 / 2 / 3",desc:"Network Security Expert Levels 1–3",file:"",type:"pdf"},
-  {title:"Microsoft DP-600",desc:"Fabric Analytics Engineer Associate (In Progress)",file:"",type:"pdf"},
-];
+  <script>
+    /* ─────────────────────────────────────────────
+       CUSTOMIZE: add your certificate image paths here.
+       Each entry: array of image paths (1 or more per cert).
+       Example: pl300: ['assets/certs/pl300.png', 'assets/certs/pl300-badge.png']
+    ───────────────────────────────────────────── */
+    const certData = {
+      pl300: { title: 'Microsoft PL-300 — Power BI Data Analyst', issuer: 'Microsoft', images: [] },
+      dp900: { title: 'Microsoft DP-900 — Azure Data Fundamentals', issuer: 'Microsoft', images: [] },
+      az900: { title: 'Microsoft AZ-900 — Azure Fundamentals', issuer: 'Microsoft', images: [] },
+      alteryx: { title: 'Alteryx Designer Core & Advanced', issuer: 'Alteryx', images: [] },
+      fortinet: { title: 'Fortinet NSE 1, 2 & 3', issuer: 'Fortinet', images: [] },
+      dp600: { title: 'Microsoft DP-600 — Fabric Analytics Engineer', issuer: 'Microsoft', images: [], inProgress: true },
+      itil: { title: 'ITIL 5 Foundation', issuer: 'PeopleCert', images: [], inProgress: true },
+    };
 
-function showCertFile(i){
-  const c=certs[i];
-  document.getElementById('cv-title-crumb').textContent=c.title;
-  document.getElementById('cv-title').textContent=c.title;
-  document.getElementById('cv-desc').textContent=c.desc;
-  const pdfWrap=document.getElementById('cv-pdf-wrap');
-  const imgWrap=document.getElementById('cv-img-wrap');
-  const ph=document.getElementById('cv-placeholder');
-  const hint=document.getElementById('cv-placeholder-hint');
-  // Reset
-  pdfWrap.style.display='none';
-  imgWrap.style.display='none';
-  ph.style.display='flex';
-  if(c.file){
-    if(c.type==='pdf'){
-      document.getElementById('cv-pdf').src=c.file;
-      pdfWrap.style.display='block';
-      ph.style.display='none';
-    } else {
-      document.getElementById('cv-img').src=c.file;
-      imgWrap.style.display='block';
-      ph.style.display='none';
+    let lbImages = [], lbIndex = 0;
+
+    function openCertViewer(id) {
+      const cert = certData[id];
+      if (!cert) return;
+      lbImages = cert.images || [];
+      lbIndex = 0;
+
+      document.getElementById('lbTitle').textContent = cert.title;
+      document.getElementById('lbIssuer').textContent = cert.issuer;
+
+      renderLbImage();
+
+      const lb = document.getElementById('certLightbox');
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(() => lb.classList.add('visible'));
     }
-  } else {
-    hint.textContent='Add your file path to certs['+i+'].file in the script';
-  }
-  showPage('certview');
-}
 
-function showProject(i){
-  const p=projects[i];
-  document.getElementById('det-domain').textContent=p.domain;
-  document.getElementById('det-title').textContent=p.title;
-  document.getElementById('det-desc').textContent=p.desc;
-  document.getElementById('det-year').textContent=p.year;
-  const cc=document.getElementById('det-chips');
-  cc.innerHTML='';
-  p.chips.forEach(c=>{
-    const el=document.createElement('span');
-    el.className='chip'+(c.v?' v':'');
-    el.textContent=c.l;cc.appendChild(el);
-  });
-  p.pdfs.forEach((n,j)=>document.getElementById('pdf'+(j+1)).textContent=n);
-  showPage('detail');
-}
+    function renderLbImage() {
+      const body = document.getElementById('lbBody');
+      const nav = document.getElementById('lbNav');
 
+      body.innerHTML = '';
 
-function showPage(name){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+name).classList.add('active');
-  const back=document.getElementById('back-btn');
-  const pill=document.getElementById('bar-pill');
-  if(name==='home'){
-    back.style.display='none';pill.style.display='inline-block';
-    back.onclick=null;
-  } else if(name==='certs'){
-    back.style.display='flex';pill.style.display='none';
-    back.onclick=()=>showPage('home');
-  } else if(name==='certview'){
-    back.style.display='flex';pill.style.display='none';
-    back.onclick=()=>showPage('certs');
-  } else {
-    back.style.display='flex';pill.style.display='none';
-    back.onclick=()=>showPage('home');
-  }
-  window.scrollTo({top:0,behavior:'smooth'});
-}
+      if (!lbImages.length) {
+        body.innerHTML = `
+          <div class="lb-placeholder">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+            No images added yet.<br/>
+            Add image paths to the <code>certData</code> object in the script.
+          </div>`;
+        nav.classList.remove('visible');
+        return;
+      }
 
-// Animate skill bars on load
-window.addEventListener('load',()=>{
-  setTimeout(()=>{
-    document.querySelectorAll('.ch-bar').forEach((b,i)=>{
-      setTimeout(()=>{
-        b.style.height=(b.dataset.h/100*80)+'px';
-      },i*100);
+      const img = document.createElement('img');
+      img.src = lbImages[lbIndex];
+      img.alt = 'Certificate';
+      body.appendChild(img);
+
+      if (lbImages.length > 1) {
+        nav.classList.add('visible');
+        document.getElementById('lbCounter').textContent = `${lbIndex + 1} / ${lbImages.length}`;
+        document.getElementById('lbPrev').disabled = lbIndex === 0;
+        document.getElementById('lbNext').disabled = lbIndex === lbImages.length - 1;
+      } else {
+        nav.classList.remove('visible');
+      }
+    }
+
+    function lbNavigate(dir) {
+      lbIndex = Math.max(0, Math.min(lbImages.length - 1, lbIndex + dir));
+      renderLbImage();
+    }
+
+    function closeCertViewer(e) {
+      if (e && e.target !== document.getElementById('certLightbox') && !e.target.closest('.cert-lightbox-close')) return;
+      const lb = document.getElementById('certLightbox');
+      lb.classList.remove('visible');
+      setTimeout(() => { lb.classList.remove('open'); document.body.style.overflow = ''; }, 250);
+    }
+
+    document.addEventListener('keydown', e => {
+      const lb = document.getElementById('certLightbox');
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeCertViewer({ target: lb });
+      if (e.key === 'ArrowLeft' && lbImages.length > 1) lbNavigate(-1);
+      if (e.key === 'ArrowRight' && lbImages.length > 1) lbNavigate(1);
     });
-  },400);
-});
-</script>
+
+    /* ── PROJECT SHOW / HIDE ── */
+    const projectFiles = {
+      p1: [
+        // { label: 'Overview', type: 'pdf',   src: 'assets/p1-overview.pdf' },
+        // { label: 'Screenshot 1', type: 'image', src: 'assets/p1-screen1.png' },
+        // { label: 'Demo', type: 'video', src: 'assets/p1-demo.mp4' },
+      ],
+      p2: [
+        // { label: 'Report', type: 'pdf',   src: 'assets/p2-report.pdf' },
+        // { label: 'Dashboard', type: 'image', src: 'assets/p2-dashboard.png' },
+        // { label: 'Walkthrough', type: 'video', src: 'assets/p2-walkthrough.mp4' },
+      ]
+    };
+
+    const tabIcons = {
+      pdf: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
+      image: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>',
+      video: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>'
+    };
+
+    function buildMediaViewer(projectId) {
+      const files = projectFiles[projectId] || [];
+      const tabsEl = document.getElementById(projectId + '-tabs');
+      const stageEl = document.getElementById(projectId + '-stage');
+      if (!files.length) return; // keep placeholder
+
+      tabsEl.innerHTML = '';
+      stageEl.innerHTML = '';
+
+      files.forEach((f, i) => {
+        // Tab
+        const tab = document.createElement('button');
+        tab.className = 'media-tab' + (i === 0 ? ' active' : '');
+        tab.innerHTML = (tabIcons[f.type] || '') + f.label;
+        tab.addEventListener('click', () => activateTab(projectId, i));
+        tabsEl.appendChild(tab);
+
+        // Frame
+        const frame = document.createElement('div');
+        frame.className = 'media-frame' + (i === 0 ? ' active' : '');
+        frame.dataset.index = i;
+
+        if (f.type === 'pdf') {
+          frame.innerHTML = `<iframe src="${f.src}" title="${f.label}"></iframe>`;
+        } else if (f.type === 'image') {
+          frame.innerHTML = `<img src="${f.src}" alt="${f.label}" loading="lazy">`;
+        } else if (f.type === 'video') {
+          frame.innerHTML = `<video src="${f.src}" controls></video>`;
+        }
+        stageEl.appendChild(frame);
+      });
+    }
+
+    function activateTab(projectId, index) {
+      const tabsEl = document.getElementById(projectId + '-tabs');
+      const stageEl = document.getElementById(projectId + '-stage');
+      tabsEl.querySelectorAll('.media-tab').forEach((t, i) => t.classList.toggle('active', i === index));
+      stageEl.querySelectorAll('.media-frame').forEach((f, i) => f.classList.toggle('active', i === index));
+    }
+
+    /* ── PROJECT SHOW / HIDE ── */
+    function showProject(id) {
+      const list = document.getElementById('projects-list');
+      const detail = document.getElementById('project-' + id);
+      list.style.opacity = '0';
+      list.style.transition = 'opacity 0.2s ease';
+      setTimeout(() => {
+        list.style.display = 'none';
+        buildMediaViewer(id);
+        detail.style.display = '';
+        detail.style.opacity = '0';
+        requestAnimationFrame(() => {
+          detail.style.transition = 'opacity 0.3s ease';
+          detail.style.opacity = '1';
+        });
+      }, 200);
+      document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function hideProject(id) {
+      const list = document.getElementById('projects-list');
+      const detail = document.getElementById('project-' + id);
+      detail.style.transition = 'opacity 0.2s ease';
+      detail.style.opacity = '0';
+      setTimeout(() => {
+        detail.style.display = 'none';
+        list.style.display = '';
+        list.style.opacity = '0';
+        requestAnimationFrame(() => {
+          list.style.transition = 'opacity 0.3s ease';
+          list.style.opacity = '1';
+        });
+      }, 200);
+    }
+
+    /* ── SECTION VISIBILITY ── */
+    function showSection(id) {
+      const sections = ['projects', 'contact'];
+      sections.forEach(s => {
+        const sec = document.getElementById(s);
+        const div = document.getElementById('divider-' + s);
+        const show = s === id;
+        sec.style.display = show ? '' : 'none';
+        div.style.display = show ? '' : 'none';
+      });
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    /* ── STAT CARD TOGGLES ── */
+    const expCard = document.getElementById('expCard');
+    const certsCard = document.getElementById('certsCard');
+    const expToggle = document.getElementById('expToggle');
+    const certsToggle = document.getElementById('certsToggle');
+
+    function setToggleLabel(toggle, expanded) {
+      toggle.firstChild.textContent = expanded ? 'Hide ' : 'View ';
+    }
+
+    expToggle.addEventListener('click', function () {
+      const willExpand = !expCard.classList.contains('expanded');
+      certsCard.classList.remove('expanded');
+      setToggleLabel(certsToggle, false);
+      expCard.classList.toggle('expanded', willExpand);
+      setToggleLabel(expToggle, willExpand);
+    });
+
+    certsToggle.addEventListener('click', function () {
+      const willExpand = !certsCard.classList.contains('expanded');
+      expCard.classList.remove('expanded');
+      setToggleLabel(expToggle, false);
+      certsCard.classList.toggle('expanded', willExpand);
+      setToggleLabel(certsToggle, willExpand);
+    });
+  </script>
+
 </body>
+
 </html>
