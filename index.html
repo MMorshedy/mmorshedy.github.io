@@ -1293,8 +1293,8 @@
         </div>
       </div>
       <p class="project-detail-desc">
-        A Power BI dashboard connected to SharePoint Online tracking hardware lifecycle,
-        asset allocation, and maintenance across the organization. Self-initiated at PwC ETIC.
+        A Power BI dashboard connected to SharePoint Online tracking hardware stock inventory and
+        asset allocation across the organization.
       </p>
       <!-- MEDIA VIEWER -->
       <div class="media-viewer">
@@ -1438,13 +1438,12 @@
        Example: pl300: ['assets/certs/pl300.png', 'assets/certs/pl300-badge.png']
     ───────────────────────────────────────────── */
     const certData = {
-      pl300: { title: 'Microsoft PL-300 — Power BI Data Analyst', issuer: 'Microsoft', images: [] },
-      dp900: { title: 'Microsoft DP-900 — Azure Data Fundamentals', issuer: 'Microsoft', images: [] },
-      az900: { title: 'Microsoft AZ-900 — Azure Fundamentals', issuer: 'Microsoft', images: [] },
-      alteryx: { title: 'Alteryx Designer Core & Advanced', issuer: 'Alteryx', images: [] },
-      fortinet: { title: 'Fortinet NSE 1, 2 & 3', issuer: 'Fortinet', images: [] },
-      dp600: { title: 'Microsoft DP-600 — Fabric Analytics Engineer', issuer: 'Microsoft', images: [], inProgress: true },
-      itil: { title: 'ITIL 5 Foundation', issuer: 'PeopleCert', images: [], inProgress: true },
+      pl300: { title: 'Microsoft PL-300 — Power BI Data Analyst', issuer: 'Microsoft', images: ['Certificates/PL-300.png'] },
+      dp900: { title: 'Microsoft DP-900 — Azure Data Fundamentals', issuer: 'Microsoft', images: ['Certificates/DP-900.png'] },
+      az900: { title: 'Microsoft AZ-900 — Azure Fundamentals', issuer: 'Microsoft', images: ['Certificates/AZ-900.png'] },
+      alteryx: { title: 'Alteryx Designer Core & Advanced', issuer: 'Alteryx', images: ['Certificates/Alteryx Designer Core.jpeg', 'Certificates/Alteryx Designer Advanced.png'] },
+      fortinet: { title: 'Fortinet NSE 1, 2 & 3', issuer: 'Fortinet', images: ['Certificates/FCF.png', 'Certificates/FCA.png'] },
+      itil: { title: 'ITIL 5 Foundation', issuer: 'PeopleCert', images: ['Certificates/ITIL 5.png'] },
     };
 
     let lbImages = [], lbIndex = 0;
@@ -1525,14 +1524,16 @@
     /* ── PROJECT SHOW / HIDE ── */
     const projectFiles = {
       p1: [
-        // { label: 'Overview', type: 'pdf',   src: 'assets/p1-overview.pdf' },
-        // { label: 'Screenshot 1', type: 'image', src: 'assets/p1-screen1.png' },
-        // { label: 'Demo', type: 'video', src: 'assets/p1-demo.mp4' },
+        { label: 'Report', type: 'pdf', src: 'Assets Monitoring System/AMS Dashboard.pdf' },
+        { label: 'Executives Dashboard', type: 'pdf', src: 'Assets Monitoring System/Executives Dashboard.pdf' },
+        { label: 'Model', type: 'image', src: 'Assets Monitoring System/Model.png' },
+        { label: 'Walkthrough', type: 'video', src: 'Assets Monitoring System/AMS Report Video.mp4' },
       ],
       p2: [
-        // { label: 'Report', type: 'pdf',   src: 'assets/p2-report.pdf' },
-        // { label: 'Dashboard', type: 'image', src: 'assets/p2-dashboard.png' },
-        // { label: 'Walkthrough', type: 'video', src: 'assets/p2-walkthrough.mp4' },
+        { label: 'Report', type: 'pdf', src: 'Service Desk Analytics/Service Desk Analytics.pdf' },
+        { label: 'Executives Dashboard', type: 'pdf', src: 'Service Desk Analytics/Executives Dashboards.pdf' },
+        { label: 'Dashboard', type: 'image', src: 'Service Desk Analytics/Model.png' },
+        { label: 'Walkthrough', type: 'video', src: 'Service Desk Analytics/SDA Video.mp4' },
       ]
     };
 
