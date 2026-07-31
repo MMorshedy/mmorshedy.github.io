@@ -632,6 +632,67 @@
       border: 1px solid var(--gold-dim);
     }
 
+    /* ── DETAIL LIST (inside PwC / GUC hero stat cards) ── */
+    .stat-card-detail {
+      cursor: default;
+      transition: border-color 0.2s, transform 0.2s, grid-column 0.01s;
+    }
+
+    .stat-card-detail .detail-list {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      margin-top: 0;
+      transition: max-height 0.35s ease, opacity 0.25s ease, margin-top 0.3s ease;
+    }
+
+    .stat-card-detail.expanded {
+      grid-column: 1 / -1;
+      cursor: default;
+    }
+
+    .stat-card-detail.expanded .detail-list {
+      max-height: 600px;
+      opacity: 1;
+      margin-top: 0.9rem;
+    }
+
+    .detail-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .detail-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      background: var(--navy-raised);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius);
+      padding: 0.7rem 1rem;
+      transition: border-color 0.2s;
+    }
+
+    .detail-item:hover {
+      border-color: var(--gold-dim);
+    }
+
+    .detail-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    .detail-text {
+      font-size: 0.8rem;
+      color: var(--beige-muted);
+      line-height: 1.6;
+    }
+
     /* ── PROJECT DETAIL VIEW ── */
     @keyframes fadeIn {
       from {
@@ -1200,16 +1261,52 @@
           </div>
         </div>
       </div>
-      <div class="stat-card">
+      <div class="stat-card stat-card-detail" id="pwcCard">
         <div class="stat-card-body">
           <div class="stat-number">PwC</div>
           <div class="stat-label">ETIC</div>
         </div>
+        <div class="stat-card-footer" id="pwcToggle">
+          View
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </div>
+        <div class="detail-list" id="pwcList">
+          <div class="detail-item">
+            <div class="detail-dot"></div>
+            <div class="detail-text"><!-- TODO: add PwC bullet point 1 --></div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-dot"></div>
+            <div class="detail-text"><!-- TODO: add PwC bullet point 2 --></div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-dot"></div>
+            <div class="detail-text"><!-- TODO: add PwC bullet point 3 --></div>
+          </div>
+        </div>
       </div>
-      <div class="stat-card">
+      <div class="stat-card stat-card-detail" id="gucCard">
         <div class="stat-card-body">
           <div class="stat-number">GUC</div>
           <div class="stat-label">B.Sc. IET, 2023</div>
+        </div>
+        <div class="stat-card-footer" id="gucToggle">
+          View
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </div>
+        <div class="detail-list" id="gucList">
+          <div class="detail-item">
+            <div class="detail-dot"></div>
+            <div class="detail-text"><!-- TODO: add GUC bullet point 1 (e.g. graduation grade) --></div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-dot"></div>
+            <div class="detail-text"><!-- TODO: add GUC bullet point 2 --></div>
+          </div>
         </div>
       </div>
     </div>
@@ -1632,29 +1729,34 @@
     }
 
     /* ── STAT CARD TOGGLES ── */
-    const expCard = document.getElementById('expCard');
-    const certsCard = document.getElementById('certsCard');
-    const expToggle = document.getElementById('expToggle');
-    const certsToggle = document.getElementById('certsToggle');
-
     function setToggleLabel(toggle, expanded) {
       toggle.firstChild.textContent = expanded ? 'Hide ' : 'View ';
     }
 
-    expToggle.addEventListener('click', function () {
-      const willExpand = !expCard.classList.contains('expanded');
-      certsCard.classList.remove('expanded');
-      setToggleLabel(certsToggle, false);
-      expCard.classList.toggle('expanded', willExpand);
-      setToggleLabel(expToggle, willExpand);
-    });
+    const statCardIds = [
+      { card: 'expCard', toggle: 'expToggle' },
+      { card: 'certsCard', toggle: 'certsToggle' },
+      { card: 'pwcCard', toggle: 'pwcToggle' },
+      { card: 'gucCard', toggle: 'gucToggle' },
+    ];
 
-    certsToggle.addEventListener('click', function () {
-      const willExpand = !certsCard.classList.contains('expanded');
-      expCard.classList.remove('expanded');
-      setToggleLabel(expToggle, false);
-      certsCard.classList.toggle('expanded', willExpand);
-      setToggleLabel(certsToggle, willExpand);
+    const statCards = statCardIds.map(({ card, toggle }) => ({
+      card: document.getElementById(card),
+      toggle: document.getElementById(toggle),
+    }));
+
+    statCards.forEach(({ card, toggle }) => {
+      toggle.addEventListener('click', function () {
+        const willExpand = !card.classList.contains('expanded');
+        statCards.forEach(({ card: otherCard, toggle: otherToggle }) => {
+          if (otherCard !== card) {
+            otherCard.classList.remove('expanded');
+            setToggleLabel(otherToggle, false);
+          }
+        });
+        card.classList.toggle('expanded', willExpand);
+        setToggleLabel(toggle, willExpand);
+      });
     });
   </script>
 
