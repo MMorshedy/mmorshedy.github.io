@@ -96,7 +96,7 @@
     .hero {
       max-width: 960px;
       margin: 0 auto;
-      padding: 8rem 2.5rem 6rem;
+      padding: 2.5rem 2.5rem 2.5rem;
       display: grid;
       grid-template-columns: 1.3fr 1fr;
       gap: 3rem;
@@ -201,7 +201,7 @@
     .section {
       max-width: 960px;
       margin: 0 auto;
-      padding: 5.5rem 2.5rem;
+      padding: 1.5rem 2.5rem;
     }
 
     .divider {
@@ -326,18 +326,18 @@
 
     /* ── PROJECTS ── */
     .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
     }
 
     .project-card {
       background: var(--navy-card);
       border: 1px solid var(--navy-border);
       border-radius: var(--radius-lg);
-      padding: 1.75rem;
+      overflow: hidden;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       transition: border-color 0.25s, transform 0.2s;
     }
 
@@ -346,20 +346,51 @@
       transform: translateY(-3px);
     }
 
-    .project-num {
+    /* left side — dashboard preview image */
+    .project-preview {
+      position: relative;
+      flex: 0 0 40%;
+      aspect-ratio: auto;
+      background: var(--navy-raised);
+      overflow: hidden;
+    }
+
+    .project-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    /* bottom half — title + description */
+    .project-body {
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .project-title-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-title-row .project-num {
       font-family: 'Playfair Display', serif;
-      font-size: 0.75rem;
+      font-size: 1.3rem;
       color: var(--gold);
       letter-spacing: 0.1em;
-      margin-bottom: 1rem;
-      opacity: 0.7;
+      opacity: 0.75;
     }
 
     .project-card h3 {
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: var(--white);
-      margin-bottom: 0.6rem;
       line-height: 1.3;
     }
 
@@ -945,6 +976,16 @@
       .contact-box {
         padding: 2.5rem 1.5rem;
       }
+
+      .project-card {
+        flex-direction: column;
+      }
+
+      .project-preview {
+        flex: none;
+        width: 100%;
+        aspect-ratio: 16 / 8;
+      }
     }
 
     /* ── CERT LIGHTBOX ── */
@@ -1153,7 +1194,8 @@
         stakeholder adoption.
       </p>
       <div class="hero-cta">
-        <button onclick="showSection('projects')" class="btn btn-gold">
+        <button onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth', block:'start'})"
+          class="btn btn-gold">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
@@ -1275,25 +1317,27 @@
         <div class="detail-list" id="pwcList">
           <div class="detail-item">
             <div class="detail-dot"></div>
-            <div class="detail-text">Architected and deployed an enterprise IT Hardware Monitoring System using SharePoint Online and Power BI, 
-              centralizing inventory management across 1,000+ assets and eliminating manual reconciliation through automated reporting.
+            <div class="detail-text">Architected and deployed an enterprise IT Hardware Monitoring System using
+              SharePoint Online and Power BI,
+              centralizing inventory management across 1,000+ assets and eliminating manual reconciliation through
+              automated reporting.
             </div>
           </div>
           <div class="detail-item">
             <div class="detail-dot"></div>
-            <div class="detail-text">Designed 3 Service Desk Analytics dashboards (Monthly, Quarterly, and Yearly), 
+            <div class="detail-text">Designed 3 Service Desk Analytics dashboards (Monthly, Quarterly, and Yearly),
               providing actionable operational insights while reducing manual reporting by 5 hours per month.
             </div>
           </div>
           <div class="detail-item">
             <div class="detail-dot"></div>
-            <div class="detail-text">Designed semantic data models using Star and Snowflake Schema principles; 
+            <div class="detail-text">Designed semantic data models using Star and Snowflake Schema principles;
               authored DAX measures for KPIs including SLA adherence, asset utilization rates, and inventory turnover.
             </div>
           </div>
           <div class="detail-item">
             <div class="detail-dot"></div>
-            <div class="detail-text">Collaborated with IT management and procurement teams to define KPI requirements, 
+            <div class="detail-text">Collaborated with IT management and procurement teams to define KPI requirements,
               validatedata quality, and drive BI adoption across the department.
             </div>
           </div>
@@ -1328,10 +1372,10 @@
     </div>
   </section>
 
-  <hr class="divider" id="divider-projects" style="display:none;" />
+  <hr class="divider" id="divider-projects" />
 
   <!-- PROJECTS -->
-  <section class="section" id="projects" style="display:none;">
+  <section class="section" id="projects">
 
     <!-- PROJECT LIST VIEW -->
     <div id="projects-list">
@@ -1340,46 +1384,64 @@
       <div class="projects-grid">
 
         <div class="project-card">
-          <div class="project-num">01</div>
-          <h3>Assets Monitoring System</h3>
-          <p>
-            A Power BI dashboard connected to SharePoint Online tracking hardware lifecycle,
-            asset allocation, and maintenance across the organization. Self-initiated at PwC ETIC.
-          </p>
-          <div class="project-tags">
-            <span class="tag">Power BI</span>
-            <span class="tag">DAX</span>
-            <span class="tag">SharePoint</span>
-            <span class="tag">Power Query</span>
+          <div class="project-preview">
+            <!-- Swap this src for your own dashboard screenshot -->
+            <img src="Assets Monitoring System/Dashboard.png" alt="Assets Monitoring System dashboard preview"
+              loading="lazy">
           </div>
-          <button onclick="showProject('p1')" class="project-link">
-            View Project
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </button>
+          <div class="project-body">
+            <div class="project-title-row">
+              <span class="project-num">01</span>
+              <h3>Assets Monitoring System</h3>
+            </div>
+            <p>
+              A Power BI dashboard connected to SharePoint Online tracking hardware lifecycle,
+              asset allocation, and maintenance across the organization. Self-initiated at PwC ETIC.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Power BI</span>
+              <span class="tag">DAX</span>
+              <span class="tag">SharePoint</span>
+              <span class="tag">Power Query</span>
+            </div>
+            <button onclick="showProject('p1')" class="project-link">
+              View Project
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         <div class="project-card">
-          <div class="project-num">02</div>
-          <h3>Service Desk Analytics Dashboard</h3>
-          <p>
-            End-to-end Power BI solution analyzing IT service desk tickets from Atlassian JIRA,
-            surfacing SLA compliance, ticket trends, and team performance KPIs.
-          </p>
-          <div class="project-tags">
-            <span class="tag">Power BI</span>
-            <span class="tag">DAX</span>
-            <span class="tag">KPI Design</span>
-            <span class="tag">JIRA</span>
-            <span class="tag">Power Query</span>
+          <div class="project-preview">
+            <!-- Swap this src for your own dashboard screenshot -->
+            <img src="Service Desk Analytics/Dashboard.png" alt="Service Desk Analytics Dashboard preview"
+              loading="lazy">
           </div>
-          <button onclick="showProject('p2')" class="project-link">
-            View Project
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </button>
+          <div class="project-body">
+            <div class="project-title-row">
+              <span class="project-num">02</span>
+              <h3>Service Desk Analytics Dashboard</h3>
+            </div>
+            <p>
+              End-to-end Power BI solution analyzing IT service desk tickets from Atlassian JIRA,
+              surfacing SLA compliance, ticket trends, and team performance KPIs.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Power BI</span>
+              <span class="tag">DAX</span>
+              <span class="tag">KPI Design</span>
+              <span class="tag">JIRA</span>
+              <span class="tag">Power Query</span>
+            </div>
+            <button onclick="showProject('p2')" class="project-link">
+              View Project
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
 
       </div>
@@ -1732,16 +1794,13 @@
     }
 
     /* ── SECTION VISIBILITY ── */
+    /* Projects is always visible now; only "contact" is toggled on demand. */
     function showSection(id) {
-      const sections = ['projects', 'contact'];
-      sections.forEach(s => {
-        const sec = document.getElementById(s);
-        const div = document.getElementById('divider-' + s);
-        const show = s === id;
-        sec.style.display = show ? '' : 'none';
-        div.style.display = show ? '' : 'none';
-      });
-      document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const sec = document.getElementById(id);
+      const div = document.getElementById('divider-' + id);
+      sec.style.display = '';
+      if (div) div.style.display = '';
+      sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     /* ── STAT CARD TOGGLES ── */
