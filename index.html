@@ -1401,8 +1401,9 @@
             <div class="project-tags">
               <span class="tag">Power BI</span>
               <span class="tag">DAX</span>
-              <span class="tag">SharePoint</span>
               <span class="tag">Power Query</span>
+              <span class="tag">SharePoint</span>
+              <span class="tag">Excel</span>
             </div>
             <button onclick="showProject('p1')" class="project-link">
               View Project
@@ -1431,11 +1432,42 @@
             <div class="project-tags">
               <span class="tag">Power BI</span>
               <span class="tag">DAX</span>
+              <span class="tag">Power Query</span>
               <span class="tag">KPI Design</span>
               <span class="tag">JIRA</span>
-              <span class="tag">Power Query</span>
             </div>
             <button onclick="showProject('p2')" class="project-link">
+              View Project
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-preview">
+            <!-- Swap this src for your own dashboard screenshot -->
+            <img src="Citi Bike Analytics/Dashboard.png" alt="Project Three dashboard preview" loading="lazy">
+          </div>
+          <div class="project-body">
+            <div class="project-title-row">
+              <span class="project-num">03</span>
+              <h3>NYC Citi Bike Analytics</h3>
+            </div>
+            <p>
+              Designed an interactive NYC Citi Bike Analytics Dashboard in Power BI, combining and analyzing data from
+              26 CSV files across multiple months. The dashboard provides insights into trip volume, rider demographics,
+              user types, trip duration, station performance, routes, and bike usage, enabling data-driven analysis of
+              Citi Bike operations and rider behavior.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Power BI</span>
+              <span class="tag">DAX</span>
+              <span class="tag">Power Query</span>
+              <span class="tag">Excel</span>
+            </div>
+            <button onclick="showProject('p3')" class="project-link">
               View Project
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7" />
@@ -1532,6 +1564,51 @@
       </div>
     </div>
 
+    <!-- PROJECT DETAIL: Project Three (placeholder) -->
+    <div id="project-p3" class="project-detail" style="display:none;">
+      <button class="project-back" onclick="hideProject('p3')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+        Back to projects
+      </button>
+      <div class="project-detail-header">
+        <span class="project-num">03</span>
+        <div>
+          <h2 class="project-detail-title">NYC Citi Bike Analytics</h2>
+          <div class="project-tags" style="margin-top:0.5rem;">
+            <span class="tag">Power BI</span>
+            <span class="tag">Dax</span>
+            <span class="tag">Power Query</span>
+            <span class="tag">Excel</span>
+          </div>
+        </div>
+      </div>
+      <p class="project-detail-desc">
+        Designed an interactive NYC Citi Bike Analytics Dashboard in Power BI, combining and analyzing data from 26 CSV
+        files across multiple months. The dashboard provides insights into trip volume, rider demographics, user types,
+        trip duration, station performance, routes, and bike usage, enabling data-driven analysis of Citi Bike
+        operations and rider behavior.
+      </p>
+      <!-- MEDIA VIEWER -->
+      <div class="media-viewer">
+        <div class="media-tabs" id="p3-tabs"></div>
+        <div class="media-stage" id="p3-stage">
+          <div class="media-placeholder">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              opacity="0.3">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <polyline points="21 15 16 10 5 21" />
+            </svg>
+            <p>No media files added yet.<br />Replace the <code>p3</code> entry in the script's
+              <code>projectFiles</code> object with your PDF, image, or video paths.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <hr class="divider" id="divider-contact" style="display:none;" />
@@ -1613,12 +1690,12 @@
        Example: pl300: ['assets/certs/pl300.png', 'assets/certs/pl300-badge.png']
     ───────────────────────────────────────────── */
     const certData = {
-      pl300: { title: 'Microsoft PL-300 — Power BI Data Analyst', issuer: 'Microsoft', images: ['Certificates/PL-300.png'] },
-      dp900: { title: 'Microsoft DP-900 — Azure Data Fundamentals', issuer: 'Microsoft', images: ['Certificates/DP-900.png'] },
-      az900: { title: 'Microsoft AZ-900 — Azure Fundamentals', issuer: 'Microsoft', images: ['Certificates/AZ-900.png'] },
-      alteryx: { title: 'Alteryx Designer Core & Advanced', issuer: 'Alteryx', images: ['Certificates/Alteryx Designer Core.jpeg', 'Certificates/Alteryx Designer Advanced.png'] },
-      fortinet: { title: 'Fortinet NSE 1, 2 & 3', issuer: 'Fortinet', images: ['Certificates/FCF.png', 'Certificates/FCA.png'] },
-      itil: { title: 'ITIL 5 Foundation', issuer: 'PeopleCert', images: ['Certificates/ITIL 5.png'] },
+      pl300: {title: 'Microsoft PL-300 — Power BI Data Analyst', issuer: 'Microsoft', images: ['Certificates/PL-300.png']},
+      dp900: {title: 'Microsoft DP-900 — Azure Data Fundamentals', issuer: 'Microsoft', images: ['Certificates/DP-900.png']},
+      az900: {title: 'Microsoft AZ-900 — Azure Fundamentals', issuer: 'Microsoft', images: ['Certificates/AZ-900.png']},
+      alteryx: {title: 'Alteryx Designer Core & Advanced', issuer: 'Alteryx', images: ['Certificates/Alteryx Designer Core.jpeg', 'Certificates/Alteryx Designer Advanced.png']},
+      fortinet: {title: 'Fortinet NSE 1, 2 & 3', issuer: 'Fortinet', images: ['Certificates/FCF.png', 'Certificates/FCA.png']},
+      itil: {title: 'ITIL 5 Foundation', issuer: 'PeopleCert', images: ['Certificates/ITIL 5.png']},
     };
 
     let lbImages = [], lbIndex = 0;
@@ -1685,13 +1762,13 @@
       if (e && e.target !== document.getElementById('certLightbox') && !e.target.closest('.cert-lightbox-close')) return;
       const lb = document.getElementById('certLightbox');
       lb.classList.remove('visible');
-      setTimeout(() => { lb.classList.remove('open'); document.body.style.overflow = ''; }, 250);
+      setTimeout(() => {lb.classList.remove('open'); document.body.style.overflow = '';}, 250);
     }
 
     document.addEventListener('keydown', e => {
       const lb = document.getElementById('certLightbox');
       if (!lb.classList.contains('open')) return;
-      if (e.key === 'Escape') closeCertViewer({ target: lb });
+      if (e.key === 'Escape') closeCertViewer({target: lb});
       if (e.key === 'ArrowLeft' && lbImages.length > 1) lbNavigate(-1);
       if (e.key === 'ArrowRight' && lbImages.length > 1) lbNavigate(1);
     });
@@ -1699,16 +1776,22 @@
     /* ── PROJECT SHOW / HIDE ── */
     const projectFiles = {
       p1: [
-        { label: 'Report', type: 'pdf', src: 'Assets Monitoring System/AMS Dashboard.pdf' },
-        { label: 'Executives Dashboard', type: 'pdf', src: 'Assets Monitoring System/Executives Dashboard.pdf' },
-        { label: 'Model', type: 'image', src: 'Assets Monitoring System/Model.png' },
-        { label: 'Walkthrough', type: 'video', src: 'Assets Monitoring System/AMS Report Video.mp4' },
+        {label: 'Report', type: 'pdf', src: 'Assets Monitoring System/AMS Dashboard.pdf'},
+        {label: 'Executives Dashboard', type: 'pdf', src: 'Assets Monitoring System/Executives Dashboard.pdf'},
+        {label: 'Model', type: 'image', src: 'Assets Monitoring System/Model.png'},
+        {label: 'Walkthrough', type: 'video', src: 'Assets Monitoring System/AMS Report Video.mp4'},
       ],
       p2: [
-        { label: 'Report', type: 'pdf', src: 'Service Desk Analytics/Service Desk Analytics.pdf' },
-        { label: 'Executives Dashboard', type: 'pdf', src: 'Service Desk Analytics/Executives Dashboard.pdf' },
-        { label: 'Model', type: 'image', src: 'Service Desk Analytics/Model.png' },
-        { label: 'Walkthrough', type: 'video', src: 'Service Desk Analytics/SDA Video.mp4' },
+        {label: 'Report', type: 'pdf', src: 'Service Desk Analytics/Service Desk Analytics.pdf'},
+        {label: 'Executives Dashboard', type: 'pdf', src: 'Service Desk Analytics/Executives Dashboard.pdf'},
+        {label: 'Model', type: 'image', src: 'Service Desk Analytics/Model.png'},
+        {label: 'Walkthrough', type: 'video', src: 'Service Desk Analytics/SDA Video.mp4'},
+      ],
+      p3: [
+        {label: 'Report', type: 'pdf', src: 'Citi Bike Analytics/NYC Citi Bike Analysis.pdf'},
+        {label: 'Executives Dashboard', type: 'pdf', src: 'Citi Bike Analytics/Executives Dashboard.pdf'},
+        {label: 'Model', type: 'image', src: 'Citi Bike Analytics/Model.png'},
+        {label: 'Walkthrough', type: 'video', src: 'Citi Bike Analytics/NYC Citi Bike Video.mp4'},
       ]
     };
 
@@ -1774,7 +1857,7 @@
           detail.style.opacity = '1';
         });
       }, 200);
-      document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('projects').scrollIntoView({behavior: 'smooth', block: 'start'});
     }
 
     function hideProject(id) {
@@ -1800,7 +1883,7 @@
       const div = document.getElementById('divider-' + id);
       sec.style.display = '';
       if (div) div.style.display = '';
-      sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      sec.scrollIntoView({behavior: 'smooth', block: 'start'});
     }
 
     /* ── STAT CARD TOGGLES ── */
@@ -1809,21 +1892,21 @@
     }
 
     const statCardIds = [
-      { card: 'expCard', toggle: 'expToggle' },
-      { card: 'certsCard', toggle: 'certsToggle' },
-      { card: 'pwcCard', toggle: 'pwcToggle' },
-      { card: 'gucCard', toggle: 'gucToggle' },
+      {card: 'expCard', toggle: 'expToggle'},
+      {card: 'certsCard', toggle: 'certsToggle'},
+      {card: 'pwcCard', toggle: 'pwcToggle'},
+      {card: 'gucCard', toggle: 'gucToggle'},
     ];
 
-    const statCards = statCardIds.map(({ card, toggle }) => ({
+    const statCards = statCardIds.map(({card, toggle}) => ({
       card: document.getElementById(card),
       toggle: document.getElementById(toggle),
     }));
 
-    statCards.forEach(({ card, toggle }) => {
+    statCards.forEach(({card, toggle}) => {
       toggle.addEventListener('click', function () {
         const willExpand = !card.classList.contains('expanded');
-        statCards.forEach(({ card: otherCard, toggle: otherToggle }) => {
+        statCards.forEach(({card: otherCard, toggle: otherToggle}) => {
           if (otherCard !== card) {
             otherCard.classList.remove('expanded');
             setToggleLabel(otherToggle, false);
