@@ -509,6 +509,7 @@
       position: relative;
       --mx: 50%;
       --my: 50%;
+      cursor: pointer;
     }
 
     .project-card::before {
@@ -1600,7 +1601,8 @@
       <h2 class="section-title">Featured projects</h2>
       <div class="projects-grid">
 
-        <div class="project-card">
+        <div class="project-card" onclick="showProject('p1')" role="button" tabindex="0"
+          onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showProject('p1');}">
           <div class="project-preview">
             <!-- Swap this src for your own dashboard screenshot -->
             <img src="Assets Monitoring System/Dashboard.png" alt="Assets Monitoring System dashboard preview"
@@ -1622,16 +1624,17 @@
               <span class="tag">SharePoint</span>
               <span class="tag">Excel</span>
             </div>
-            <button onclick="showProject('p1')" class="project-link">
+            <span class="project-link">
               View Project
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </button>
+            </span>
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card" onclick="showProject('p2')" role="button" tabindex="0"
+          onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showProject('p2');}">
           <div class="project-preview">
             <!-- Swap this src for your own dashboard screenshot -->
             <img src="Service Desk Analytics/Dashboard.png" alt="Service Desk Analytics Dashboard preview"
@@ -1653,16 +1656,17 @@
               <span class="tag">KPI Design</span>
               <span class="tag">JIRA</span>
             </div>
-            <button onclick="showProject('p2')" class="project-link">
+            <span class="project-link">
               View Project
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </button>
+            </span>
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card" onclick="showProject('p3')" role="button" tabindex="0"
+          onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showProject('p3');}">
           <div class="project-preview">
             <!-- Swap this src for your own dashboard screenshot -->
             <img src="Citi Bike Analytics/Dashboard.png" alt="Project Three dashboard preview" loading="lazy">
@@ -1684,12 +1688,12 @@
               <span class="tag">Power Query</span>
               <span class="tag">Excel</span>
             </div>
-            <button onclick="showProject('p3')" class="project-link">
+            <span class="project-link">
               View Project
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </button>
+            </span>
           </div>
         </div>
 
