@@ -1431,7 +1431,7 @@
           </svg>
           View my work
         </button>
-        <button onclick="showSection('contact')" class="btn btn-outline">Get in touch</button>
+        <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth', block:'start'})" class="btn btn-outline">Get in touch</button>
       </div>
     </div>
     <div class="hero-stats reveal" style="animation-delay:0.3s">
@@ -1844,10 +1844,10 @@
 
   </section>
 
-  <hr class="divider" id="divider-contact" style="display:none;" />
+  <hr class="divider" id="divider-contact" />
 
   <!-- CONTACT -->
-  <section class="section" id="contact" style="display:none;">
+  <section class="section" id="contact">
     <div class="contact-box">
       <h2 class="section-title" style="margin-bottom:0.75rem">Let's connect</h2>
       <p>Open to BI Engineer and Data Analyst roles</p>
