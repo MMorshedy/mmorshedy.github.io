@@ -797,7 +797,6 @@
       display: flex;
       flex-direction: column;
       gap: 0.6rem;
-      padding: 6px 2px;
     }
 
     .cert-item {
@@ -815,8 +814,7 @@
     .cert-item:hover {
       border-color: var(--accent-dim);
       background: var(--accent-pale);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px -16px rgba(139, 108, 255, 0.4);
+      transform: translateX(3px);
     }
 
     .cert-item--progress {
@@ -825,31 +823,6 @@
 
     .cert-item--progress:hover {
       opacity: 1;
-    }
-
-    .cert-view-hint {
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--text-dim);
-      letter-spacing: 0.02em;
-      flex-shrink: 0;
-      opacity: 0;
-      transform: translateX(-4px);
-      transition: opacity 0.2s, transform 0.2s;
-      white-space: nowrap;
-    }
-
-    .cert-item:hover .cert-view-hint {
-      opacity: 0.65;
-      transform: translateX(0);
-    }
-
-    /* Touch devices have no hover — show the hint permanently instead */
-    @media (hover: none) {
-      .cert-view-hint {
-        opacity: 0.55;
-        transform: translateX(0);
-      }
     }
 
     .cert-dot {
@@ -1622,7 +1595,6 @@
               <div class="cert-name">ITIL 5 Foundation</div>
               <div class="cert-issuer">PeopleCert</div>
             </div>
-            <span class="cert-view-hint" aria-hidden="true">Click to view</span>
             <span class="cert-badge active">Active</span>
           </div>
           <div class="cert-item" onclick="openCertViewer('pl300')">
@@ -1631,7 +1603,6 @@
               <div class="cert-name">Microsoft PL-300 — Power BI Data Analyst</div>
               <div class="cert-issuer">Microsoft</div>
             </div>
-            <span class="cert-view-hint" aria-hidden="true">Click to view</span>
             <span class="cert-badge active">Active</span>
           </div>
           <div class="cert-item" onclick="openCertViewer('dp900')">
@@ -1640,7 +1611,6 @@
               <div class="cert-name">Microsoft DP-900 — Azure Data Fundamentals</div>
               <div class="cert-issuer">Microsoft</div>
             </div>
-            <span class="cert-view-hint" aria-hidden="true">Click to view</span>
             <span class="cert-badge active">Active</span>
           </div>
           <div class="cert-item" onclick="openCertViewer('az900')">
@@ -1649,7 +1619,6 @@
               <div class="cert-name">Microsoft AZ-900 — Azure Fundamentals</div>
               <div class="cert-issuer">Microsoft</div>
             </div>
-            <span class="cert-view-hint" aria-hidden="true">Click to view</span>
             <span class="cert-badge active">Active</span>
           </div>
           <div class="cert-item" onclick="openCertViewer('alteryx')">
@@ -1658,7 +1627,6 @@
               <div class="cert-name">Alteryx Designer Core &amp; Advanced</div>
               <div class="cert-issuer">Alteryx</div>
             </div>
-            <span class="cert-view-hint" aria-hidden="true">Click to view</span>
             <span class="cert-badge active">Active</span>
           </div>
           <div class="cert-item" onclick="openCertViewer('fortinet')">
@@ -1667,7 +1635,6 @@
               <div class="cert-name">Fortinet NSE 1, 2 &amp; 3</div>
               <div class="cert-issuer">Fortinet</div>
             </div>
-            <span class="cert-view-hint" aria-hidden="true">Click to view</span>
             <span class="cert-badge active">Active</span>
           </div>
         </div>
